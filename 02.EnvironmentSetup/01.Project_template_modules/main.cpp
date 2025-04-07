@@ -24,5 +24,7 @@ int main(){
     fmt::print("Please enter a new value :\n");
     std::cin>>val3;
     fmt::print("The value of val3 is {}\n", val3);
+    fmt::print("The value of val1 is {}\n", val1);
+    fmt::print("The value of val2 is {}\n", val2);
     return 0;
 }
