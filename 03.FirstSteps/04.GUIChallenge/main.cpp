@@ -1,16 +1,14 @@
 /*
-    . A simple project using sfml with cmake and vcpkg, using c+20 modules
+    . Project description
+        . Topic #1
+        . Topic #2
 */
-
-// One line comment
-
-
 import utilities;
 
-int main() {
-
-    app();
+int main(){
+    // . Code description
+   app();
+    // . Code description
 
     return 0;
-
 }
