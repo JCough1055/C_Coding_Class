@@ -3,7 +3,7 @@ module;
 export module utilities; 
 export void app(){
 
-    sf::RenderWindow window(sf::VideoMode(300, 300), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(300, 300), "This circle is blue!!");
     sf::CircleShape shape(150.f);
     shape.setFillColor(sf::Color::Blue);
 
