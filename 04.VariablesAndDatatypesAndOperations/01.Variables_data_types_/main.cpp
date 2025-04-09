@@ -1,19 +1,13 @@
-/*
-    . Exploring variables and data types
+/* 
+Exploring Variables and Data Types in C++
 */
-
 #include <fmt/format.h>
-
-// One line comment
 import utilities;
 
-int main() {
+int main(){
+//number_system();
+floating_point_types();
+print_type_ranges();  
 
-    //number_systems();
-
-    //floating_point_types();
-
-    numeric_limits();
-
-
+    return 0;
 }

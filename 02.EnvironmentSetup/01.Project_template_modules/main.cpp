@@ -5,7 +5,6 @@
 */
 
 #include <fmt/format.h>
-#include<iostream>
 import utilities;
 
 int main(){
@@ -13,18 +12,11 @@ int main(){
     fmt::print("One\n");
     fmt::print("Two\n");
     fmt::print("Three\n");
-    fmt::print("This has been absolutely exhausting\n");
-    fmt::print("This is a test to make sure the container is working\n");
+    int a=44;
+    int b=22;
+    int sum=a+b;
+    fmt::print("Sum of {} and {} is {}\n", a, b, sum);
 
-    int val1=22;
-    int val2=44;
-    int val3{0};
-    auto mult=val1*val2;
-    fmt::print("The product of {} and {} is {}\n", val1, val2, mult);
-    fmt::print("Please enter a new value :\n");
-    std::cin>>val3;
-    fmt::print("The value of val3 is {}\n", val3);
-    fmt::print("The value of val1 is {}\n", val1);
-    fmt::print("The value of val2 is {}\n", val2);
+    
     return 0;
 }
