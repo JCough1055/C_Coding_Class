@@ -5,7 +5,7 @@ Exploring Variables and Data Types in C++
 import utilities;
 
 int main(){
-//number_system();
+number_system();
 floating_point_types();
 print_type_ranges();  
 

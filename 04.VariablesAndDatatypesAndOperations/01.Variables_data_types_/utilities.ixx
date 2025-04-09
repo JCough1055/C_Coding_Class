@@ -16,6 +16,7 @@ fmt::println("The value of number1 is: {}", number1);
 fmt::println("The value of number2 is: {}", number2);
 fmt::println("The value of number3 is: {}", number3);
  fmt::println("The value of number4 is: {}", number4);
+ fmt::println( " ");
 }
 export void floating_point_types(){
 /* Floating Point types
@@ -43,6 +44,7 @@ export void floating_point_types(){
     fmt::println("Size of float :{} bytes", sizeof(float));
     fmt::println("Size of double :{} bytes", sizeof(double));
     fmt::println("Size of long double :{} bytes", sizeof(long double));
+    fmt::println( " ");
 
 }
 export void print_type_ranges(){
