@@ -14,18 +14,26 @@
 
 */
 #include<fmt/format.h>
+#include <vector>
+#include <array>
+#include <string>
 
 import utilities;
 
 int main(){
     // Initialization
 
-    braced_initialization();
-    functional_initialization();
-    assignment_initialization();
-    integer_modifiers();
+    //braced_initialization();
+    //functional_initialization();
+    //assignment_initialization();
+    //integer_modifiers();
+    //floating_point_numbers();
+    //infinity_nan();
+    //booleans();
+    //char_text();
+    // vectors_arrays();
 
+auto_type();
 
-    
     return 0;
 }

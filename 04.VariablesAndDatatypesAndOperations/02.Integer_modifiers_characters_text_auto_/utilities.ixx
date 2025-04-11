@@ -1,5 +1,8 @@
 module;
 #include <fmt/format.h>
+#include <vector>
+#include <array>
+#include <string>
 export module utilities; 
 
 
@@ -119,4 +122,143 @@ export void integer_modifiers(){
     fmt::println("Unsigned long long int : {}, size {} bytes",unsigned_long_long_int, sizeof(unsigned_long_long_int));
     fmt::println(" ");
 
+}
+export void floating_point_numbers(){
+    //Fractional Numbers
+
+    float number1{1.12345678901234567890f}; // 4 bytes
+    double number2{1.12345678901234567890}; // 8 bytes
+    long double number3{1.12345678901234567890L}; // 16 bytes
+    fmt::println(" ");
+    fmt::println("this is fractional numbers");
+    fmt::println(" ");
+    fmt::println("the value of number1 is: {}",number1);
+    fmt::println("the value of number2 is: {}",number2);
+    fmt::println("the value of number3 is: {}",number3);
+    fmt::println(" ");
+    //Scientic notation
+    //The floating point numbers we have been dealing with has been in fixed notation.
+    //We can also represent floating point numbers in scientific notation.
+    //Scientific notation is a way of writing numbers that are too big or too small to be conveniently written in decimal form.
+    //In scientific notation, numbers are written in the form of a decimal number between 1 and 10 multiplied by a power of 10.
+    //For example, 12345 can be written as 1.2345 x 10^4
+    //In C++, we can use the letter e to represent the power of 10.
+    //For example, 1.2345e4 is equal to 1.2345 x 10^4
+
+    fmt::println(" ");
+    fmt::println("this is scientific notation");
+    fmt::println(" ");
+    double number5{192400023};
+    double number6{1.92400023e8}; // 1.92400023 x 10^8
+    double number7{1.924e8}; // 1.924 x 10^8 can elimate 00023 for simplicity if program allows
+    double number8{0.0000000000003498};
+    double number9{3.498e-13}; // 3.498 x 10^-13
+    fmt::println("the value of number5 is: {}",number5);
+    fmt::println("the value of number6 is: {}",number6);
+    fmt::println("the value of number7 is: {}",number7);
+    fmt::println("the value of number8 is: {}",number8);
+    fmt::println("the value of number9 is: {}",number9);
+    fmt::println(" ");
+}
+
+export void infinity_nan(){
+  // Infinity and Nan
+double number10{5.6};
+double number11{};
+double number12{};
+double number13{-5.6};
+
+//Infinity
+double result{number10/number11}; // -5.6/0 = -inf
+double result2{number13/number12}; // 0/5.6 = 0
+fmt::println("{}/{} yields {}",number10,number11,result);
+fmt::println("{}/{} yields {}",number13,number11,result2);
+fmt::println("{} + {} yields {}", result,number10,result+number10);
+fmt::println("{} + {} yields {}", result2,number13,result2+number13);
+
+//Nan(Not a Number)
+result = number11/number12; // 0/0 = nan
+fmt::println("{}/{} yields {}",number11,number12,result);
+}
+
+//Booleans
+export void booleans(){
+     //Booleans
+
+     bool red_light{false};
+     bool green_light{true};
+ 
+ if (red_light==true){
+     fmt::println("Red light is true");
+ }else{
+     fmt::println("Red light is false");
+ }
+ if (green_light){
+     fmt::println("Green light is true");
+ }else{
+     fmt::println("Green light is false");
+ }
+ fmt::println("The size of bbol is {} byte", sizeof(red_light));
+ fmt::println("The size of bool is {} byte", sizeof(bool));
+ 
+ fmt::println("The value of red_light is {}",red_light);
+ fmt::println("The value of green_light is {}",green_light);
+}
+
+export void char_text(){
+    //Characters and text
+    char character{'a'};
+    char character2{'r'};
+    char character3{'r'};
+    char character4{'o'};
+    char character5{'w'};
+
+    fmt::println(" ");
+    fmt::println("this is characters and text");
+    fmt::println(" ");
+    fmt::println("{}",character);
+    fmt::println("{}",character2);
+    fmt::println("{}",character3);
+    fmt::println("{}",character4);
+    fmt::println("{}",character5);
+    fmt::println(" ");
+    fmt::println("The word is spelled: {}{}{}{}{} !!",character,character2,character3,character4,character5);
+    char value=65;// this is the ascii value of A
+    fmt::println("the value of value is: {}",value);// this will print the ascii value of A
+    fmt::println("the value of value is: {}",static_cast<int>(value));// this turns the value into an int which is 65
+
+}
+export void vectors_arrays(){
+ //  std::vector<char> characters{'a','r','r','o','w'};
+ //std::array<char, 5> characters2{'a','r','r','o','w'};
+ //fmt::println("this is the vector printout {}", charachters); - this will not work
+ //fmt::println("this is the array printout {}", characters2);- this will not work
+std::vector<int> numbers{10,20,200,100};
+std::string message{"arrow"};
+fmt::println("this is the string printout {}", message); // this will work
+std::string greeting{"Hello"};
+greeting.append(" World");
+fmt::println("this is the string printout {}", greeting); // this will work   
+}
+
+export void auto_type(){
+        //auto declaration
+        auto var1{12};
+        auto var2{13.0};
+        auto var3{14.0f};
+        auto var4{15.0L};
+        auto var5{'e'};
+        auto var6{123u};
+        auto var7{123uL};
+        auto var8{123ll};
+    
+        fmt::println("var1 has a value of {} and a size of {} bytes", var1, sizeof(var1));
+        fmt::println("var2 has a value of {} and a size of {} bytes", var2, sizeof(var2));
+        fmt::println("var3 has a value of {} and a size of {} bytes", var3, sizeof(var3));
+        fmt::println("var4 has a value of {} and a size of {} bytes", var4, sizeof(var4));
+        fmt::println("var5 has a value of {} and a size of {} bytes", var5, sizeof(var5));
+        fmt::println("var6 has a value of {} and a size of {} bytes", var6, sizeof(var6));
+        fmt::println("var7 has a value of {} and a size of {} bytes", var7, sizeof(var7));
+        fmt::println("var8 has a value of {} and a size of {} bytes", var8, sizeof(var8));
+    
 }
