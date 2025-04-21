@@ -1,318 +1,329 @@
 module;
-
 #include <fmt/format.h>
-#include <typeinfo>
-
+#include<typeinfo>
 export module utilities; 
 
-export void basic_operations(){
-    //Basic operations
-    int number1 {2};
-    int number2 {7};
+export void basic_functions(){
 
-    //Addition
-    int result = number1 + number2;
-    fmt::println("addition: {}", result);
+    int number1{230};
+    int number2{100};
+    
+    int result_addition= number1+number2;
+    int result_subtraction= number1-number2;
+    int result_multiplication= number1*number2;
+    int result_division= number1/number2;
+    int result_modulus= number1%number2;
+    int result_increment= ++number1;
+    int result_decrement= --number2;
+    
+    fmt::print("Addition: {}\n", result_addition);
+    fmt::print("Subtraction: {}\n", result_subtraction);
+    fmt::print("Multiplication: {}\n", result_multiplication);
+    fmt::print("Division: {}\n", result_division);
+    fmt::print("Modulus: {}\n", result_modulus);
+    fmt::print("Increment: {}\n", result_increment);
+    fmt::print("Decrement: {}\n", result_decrement);
 
-    //Subtraction
-    result = number1 - number2;
-    fmt::println("subtraction: {}", result);
+}
+export void presedence_and_associativity(){
+ // Presedence and Associativity
 
-    // Multiplication
-    result = number1 * number2;
-    fmt::println("subtraction - result : {}", result);
+int a{6};
+int b{3};
+int c{8};
+int d{9};
+int e{3};
+int f{2};
+int g{5};
+int result = a + b * c-d/e-f+g; // Multiplication first, then addition if we put brackets, result changes to (a + b) * c-d/e-f+g = 72
+    fmt::print("Result: {}\n", result); // Result: 6 + 3 * 8 - 9 / 3 - 2 + 5 = 6 + 24 - 3 - 2 + 5 = 30
+    result=a/b*c+d-e+f;
+    fmt::print("New Result: {}\n", result); // Result: 6 / 3 * 8 + 9 - 3 + 2 = 2 * 8 + 9 - 3 + 2 = 16 + 9 - 3 + 2 = 24 
+}
+export void postfix_increment_and_decrement(){
 
-    // Division
-    result = number2 / number1;
-    fmt::println("division - result : {}", result);
+// Postfix increment and decrement
 
-    // Modulus
-    result = number2 % number1; // 7 % 2
-    fmt::println("modulus - result : {}", result); // 1
+int value{5};
+
+value= value +1; // Value after prefix increment: 6
+fmt::print("Value after postfix increment: {}\n", value); // Value after postfix increment: 6
+value= value -1;
+fmt::print("Value after postfix decrement: {}\n", value); // Value after postfix decrement: 5
+
+value =10;//resets value to 10
+fmt::println("the value is {}", value); // the value is 10
+value++; // Value after postfix increment: 11
+fmt::println("Value after postfix increment: {}\n", value); // Value after postfix increment: 11
+fmt::println("The value of post increment is {}", value++); // The value of post increment is 11
+fmt::println(" "); // prints a new line
+fmt::println("Now the value post increment is : {}", value); // Now the value post increment is : 12
+fmt::println(" the value of post decrement is {}", value--); // the value of post decrement is 12
+fmt::println("Now the value post decrement is : {}", value); // Now the value post decrement is : 11
+value--;
+fmt::println("Now the value post decrement is : {}", value); // Now the value post decrement is : 10
+++value;
+fmt::println("Now the value post increment is : {}", value); // Now the value post increment is : 11
+value--;
+fmt::println("Now the value post decrement is : {}", value); // Now the value post decrement is : 10
+fmt::println("The value of pre increment is {}", ++value); // The value of pre increment is 11
+fmt::println("Now the value pre increment is : {}", value); // Now the value pre increment is : 11
+fmt::println("The value of pre decrement is {}", --value); // The value of pre decrement is 10
+fmt::println("Now the value pre decrement is : {}", value); // Now the value pre decrement is : 10
+
+
 
 }
 
+export void compound_assignments(){
 
-export void precedence_and_associativity(){
-    //Precedence and assiciativity
-    int a {6};
-    int b {3};
-    int c {8};
-    int d {9};
-    int e {3};
-    int f {2};
-    int g {5};
+//Compound Assignment Operators
+int value_cmpd{45};
+value_cmpd=value_cmpd+5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 50
+value_cmpd+=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 55
+fmt::print("Value after compound assignment: {}\n", value_cmpd+=5); // Value after compound assignment: 60
+value_cmpd-=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 55
+value_cmpd*=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 275
+value_cmpd/=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 55
+value_cmpd%=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 0
+value_cmpd=5;
+value_cmpd<<=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment this is shifting bits 2 tot h 5th power which is 32*5: 160
+value_cmpd=5;
+value_cmpd>>=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 0
+value_cmpd=5;
+value_cmpd&=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 5
+value_cmpd=5;
+value_cmpd|=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 5
+value_cmpd=5;
+value_cmpd^=5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: 0
+value_cmpd=5;
+value_cmpd=~5;
+fmt::print("Value after compound assignment: {}\n", value_cmpd); // Value after compound assignment: -6
+value_cmpd=5;
+value_cmpd=5;
 
-    int result = (a + b) * c - d / e - f + g;
-    fmt::println("result: {}", result);
-
-    result = a / b * c + d - e + f;
-    fmt::println("result: {}", result);
 }
-
-
-export void prefix_postfix_increment_decrement_operators(){
-    //Prefix and postfix increment/decrement operators
-    int value {5};
-
-    //Increment by one
-    value = value + 1;
-
-    //Reset to 5
-    value = 5;
-
-    //Postfix increment/decrement operator
-    fmt::println("The value is: {}", value++);
-    fmt::println("The value is: {}", value--);
-    fmt::println("The value is: {}", value);
-
-    //Reset to 5
-    value = 5;
-
-    //Prefix increment/decrement operator
-    fmt::println("The value is: {}", ++value);
-    fmt::println("The value is: {}", --value);
-}
-
-export void compound_assignment_operators(){
-    //Compound assignment operator
-    int value {45};
-
-    //value = value + 5; //Assigning the result to the original variable
-    value += 5;
-    fmt::println("The value is: {}", value);
-
-    value -=5; // equivalent to value = value - 5
-    fmt::println("The value is (after -=5) : {}", value); // 45
-
-    value *=2;
-    fmt::println("The value is (after *=2) : {}", value); // 90
-
-    value /= 3;
-    fmt::println("The value is (after /=3) : {}", value); // 30
-
-    value %= 11;
-    fmt::println("The value is (after %=11) : {}", value);// 8
-}
-
 export void relational_operators(){
-    //Relational operators
-    int number1 {10};
-    int number2 {10};
 
-    fmt::println("number1: {}", number1);
-    fmt::println("number2: {}", number2);
+    //Relational Operators
 
-    fmt::println("number1 < number2: {}", (number1 < number2));
-    fmt::println("number1 > number2: {}", (number1 > number2));
-    fmt::println("number1 <= number2: {}", (number1 <= number2));
-    fmt::println("number1 >= number2: {}", (number1 >= number2));
-    fmt::println("number1 != number2: {}", (number1 != number2));
-    fmt::println("number1 == number2: {}", (number1 == number2));
-}
+int number1{20};
+int number2{20};
+
+fmt::println("The value of number1 is {}", number1);
+fmt::println("The value of number2 is {}", number2);
+
+fmt::println("number1 <number2: {}",(number1<number2));
+fmt::println("number1 >number2: {}",(number1>number2));
+fmt::println("number1 <=number2: {}",(number1<=number2));
+fmt::println("number1 >=number2: {}",(number1>=number2));
+fmt::println("number1 !=number2: {}",(number1!=number2));
+fmt::println("number1 ==number2: {}",(number1==number2));
+
+
+
+}    
 
 export void logical_operators(){
-    //Logical operators
-    bool a {true};
-    bool b {true};
-    bool c {false};
+//logical_operators();
 
-    fmt::println("a: {}", a);
-    fmt::println("b: {}", b);
-    fmt::println("c: {}", c);
+bool a{true};
+bool b{false};
+bool c{true};
 
-    // AND : Evaluates to true when all operands are true.
-    //       A single false operand will drag
-    //      the entire expression to evaluating false.
+fmt::println("The value of a is {}", a); // The value of a is true
+fmt::println("The value of b is {}", b); // The value of b is false
+fmt::println("The value of c is {}", c); // The value of c is true
 
-    fmt::println("a && b: {}", ( a && b ));
-    fmt::println("a && c: {}", ( a && c ));
-    fmt::println("a && b && c: {}", ( a && b && c ));
+fmt::println("the value of a and b is {}",a&&b); // the value of a and b is false
+fmt::println("the value of a and c is {}",a&&c); // the value of a and c is true
+fmt::println("the value of a and b and c is {}",a&&b&&c);
 
-    // OR : Evaluates to true when at least one operand true.
-    //       A single true operand will push
-    //      the entire expression to evaluating true.
+fmt::println("The vale of a or b is {}",a||b); // The vale of a or b is true
+fmt::println("The vale of a or c is {}",a||c); // The vale of a or c is true
+fmt::println("The value of a or b or c is {}",a||b||c); // The value of a or b or c is true
 
-    fmt::println("a || b : {}", (a || b));
-    fmt::println("a || c : {}", (a || c));
-    fmt::println("a || b || c : {}", (a || b || c));
+fmt::println("The value of a is {}", !a); // The value of a is true
+fmt::println("The value of b is {}", !b); // The value of b is false
+fmt::println("The value of c is {}", !c); // The value of c is true
 
-    // NOT : Negates whateve operand you put it with
-    fmt::println("!a : {}", !a);
-    fmt::println("!b : {}", !b);
-    fmt::println("!c : {}", !c);
+fmt::println("Combining logical operators");
+fmt::println("The value of a and b or c is {}", (a && b) || c); // The value of a and b or c is true
+
 }
 
-export void logical_relational_ops_combined(){
-    //Logical and relational operators combined
-    bool a {true};
-    int d {45};
-    int e {60};
-    int f {61};
+export void logical_relations_ops_combnined(){
+    int d{45};
+    int e{20};
+    int f{11};
+    bool a{true};
+    
+    fmt::println("The value of d is {}", d); // The value of d is 45
+    fmt::println("The value of e is {}", e); // The value of e is 20
+    fmt::println("The value of f is {}", f); // The value of f is 11
+    
+    fmt::println("The value of (d >e) && (d>f) is {}", (d>e)&&(e>f)); // The value of d is true
+    fmt::println("The value of (d =e) || (e>=f) is {}", (d==e)&&(e>=f)); // The answer is false
+    fmt::println("The value of (d >e) && (d>f) is {}", (d>e)&&(d>f)); // The value of d is true
+    fmt::println("The value of (d =e) || (e>=f) is {}", (d==e)||(e>=f)); // The answer is false
+    fmt::println("The value of (d >e) && (d>f) is {}", (d>e)&&(d>f)); // The value of d is true
+    fmt::println("The value of (d =e) || (e>=f) is {}", (d==e)||(e>=f)); // The answer is false
+    fmt::println("The value of (d >e) && (d>f) is {}", (d>e)&&(d>f)); // The value of d is true
+    fmt::println("The value of (d =e) || (e>=f) is {}", (d==e)||(e>=f)); // The answer is false
+    fmt::println("The value of (d >e) && (d>f) is {}", (d>e)&&(d>f)); // The value of d is true
+    fmt::println("The value of  d=e or e>=f is {}", (d==e)||(e>=f)); // The answer is true
+    fmt::println("the value of !a ||(e>=f) is {}", ((!a)||(e>=f))); // The answer is false
 
-    fmt::println("(d > e) && (d > f): {}",((d > e) && (d > f))); // true
-    fmt::println("(d == e) || (e <= f): {}", ((d == e) || (e <= f)));
-    fmt::println("(d < e) || (d > f) : {}", ((d < e) || (d > f)));
-    fmt::println("(f > e) || (d < f) : {}", ((f > e) || (d < f)));
-    fmt::println("(d > f) && (f <= d) : {}", ((d > f) && (f <= d)));
-    fmt::println("(d > e) && (d <= f) : {}", ((d > e) && (d <= f)));
-    fmt::println("(! a) && (d == e) : {}", ((!a) && (d == e)));
-    fmt::println("(! a) && (d == e) : {}", ((!a) && (d == e)));
+
 }
-
-
 export void math_functions(){
-    //Math functions
-    double weight {7.7};
 
-    fmt::println("Weight rounded to floor is: {}", std::floor(weight));
-    fmt::println("Weight rounded to ceil is: {}", std::ceil(weight));
+//Math Functions
 
-    //std::abs
-    double savings {-5000};
-    fmt::println("Abs of weight is: {}", std::abs(weight));
-    fmt::println("Abs of savings is: {}", std::abs(savings));
+double weight{7.7};
 
-    //round. Halfway points are rounded away from 0. 2.5 is rounded to 3 for example
-    fmt::println("3.654 rounded to : {}", std::round(3.654)); 
-    fmt::println("2.5 is rounded to : {}", std::round(2.5)); 
-    fmt::println("2.4 is rounded to : {}", std::round(2.4));
-    fmt::println("-2.4 is rounded to : {}", std::round(-2.4));
-    // round: type of result
-    auto result = std::round(-2.4);
-    fmt::println("Type of rounded -2.4: {}", typeid(result).name());
+fmt::println("the weightis rounded to floor is : {}",std::floor(weight));
+fmt::println("the weightis rounded to ceil is : {}",std::ceil(weight));
 
-    double exponential = std::exp(10);
-  	fmt::println("The exponential of 10 is : {}", exponential);
+//abs
 
-    // pow
-  	fmt::println("3^4 is : {}", std::pow(3, 4));
-  	fmt::println("9^3 is : {}", std::pow(9, 3));
+double savings{-5000};
+fmt::println("the absolute value of weight is : {}",std::abs(weight));
+fmt::println("the absolute value of savings is : {}",std::abs(savings));
 
+fmt::println("3.654 rounded to : {}", std::round(3.654));
+fmt::println("2.5 is rounded to : {}", std::round(2.5));
+fmt::println("2.4 is rounded to : {}", std::round(2.4));
+fmt::println("-2.4 is rounded to : {}", std::round(-2.4));
 
-    // log: reverse function of pow. if 2^3 = 8 , log 8 in base 2 = 3.  Log is like asking
-  	//  to which exponent should we elevate 2 to get eight ? Log, by default computes the log
-  	//  in base e. There also is another function which uses base 10 called log10
+auto result = std::round(-2.45);
+fmt::println("The result of rounding -2.45 is : {}", result);
+fmt::println("Type of rounded -2.4: {}", typeid(result).name());
 
-  	// Try the reverse operation of  e^4 = 54.59 , it will be log 54.59 in base e = ?
-  	fmt::println("Log ; to get 54.59, you would elevate e to the power of : {}", std::log(54.59));
+//exp : f(x)= e^x, where e = 2.71828. test the result here against a calculator
+double exponetial = std:: exp(10);
+fmt::println("The exponetial of 10 is : {}", exponetial);
 
-    // log10 , 10 ^ 4 = 10000  , to get 10k , you'd need to elevate 10 to the power of ? , this is log in base 10
-  	fmt::println("To get 10000, you'd need to elevate 10 to the power of : {}", std::log10(10000));// 4
-  	// sqrt
-  	fmt::println("The square root of 81 is : {}", std::sqrt(81));
+//power
+fmt::println("3^4 is {}", pow(3,4));
+fmt::println("9^3 is : {}", pow(9,3));
 
-    // round. Halfway points are rounded away from 0. 2,5 is rounded to 5 for example
-  	fmt::println("3.654 rounded to : {}", std::round(3.654));
-  	fmt::println("2.5 is rounded to : {}", std::round(2.5));
-  	fmt::println("2.4 is rounded to : {}", std::round(2.4));
+//log reverse function of power . if 2^3=8 , log 8 in base 2= 3. Log is like asking 
+//to which exponent should we elevate 2 to get eight. Log , by default computes the log
+//in base e . There is also another function which uses base 10 called log10
+
+//Try the reverse operation of e^4 =54.59, it will be log 54.59 in base e+?
+fmt::println("The log of 54.59 is : {}", std::log(54.59));
+//Try the reverse operation of 10^4 =10000, it will be log 10000 in base 10
+fmt::println("The log of 10000 is : {}", std::log10(10000));
+//Try the reverse operation of 2^3 =8, it will be log 8 in base 2
+fmt::println("The log of 8 in base 2 is : {}", std::log(8)/std::log(2));
+//sqrt
+fmt::println("The square root of 81 is : {}", std::sqrt(81));
+
 }
 
+export void weird_integer_types(){
+    short int var1{10};
+    short int var2{20};
+    
+    char var3{30};
+    char var4{40};
+    fmt::println("size(of) var1 :{}", sizeof(var1));
+    fmt::println("size(of) var2 :{}", sizeof(var2));
+    fmt::println("size(of) var3 :{}", sizeof(var3));
+    fmt::println("size(of) var4 :{}", sizeof(var4));
+    
+    auto result= var1+var2;
+    fmt::println("result :{}", result);
+    auto result2 = var3-var4;
+    fmt::println("result :{}", result2);
+    
+    fmt::println("size(of) result :{}", sizeof(result));
+    fmt::println("size(of) result2 :{}", sizeof(result2));
 
-export void weird_integral_types(){
-    //Weird integral types
-    short int var1 {10};
-    short int var2 {20};
-
-    char var3 {40};
-    char var4 {50};
-
-    fmt::println("size of var1 : {}", sizeof(var1));
-    fmt::print("size of var2 : {}\n", sizeof(var2));
-    fmt::print("size of var3 : {}\n", sizeof(var3));
-    fmt::print("size of var4 : {}\n", sizeof(var4));
-
-    auto result1 = var1 + var2;
-    auto result2 = var3 - var4;
-
-    fmt::print("size of result1 : {}\n", sizeof(result1));// 4
-    fmt::print("size of result2 : {}\n", sizeof(result2));// 4
 }
 
 export void conversions(){
-    //Conversions: implicit or explicit(static_cast)
-    //Data conversions
-    // Implicit data conversions
-    //		. The compiler applies implicit conversions
-    //  			when types are different in
-    //			an expression
-    //		. Conversions are always done from the smallest
-    //			to the largest type in this case int is
-    //			transformed to double before the expression
-    //			is evaluated.Unless we are doing an assignment
-    double price { 45.6 };
-    int units {10};
 
-    // In C++, when an operation involves two different numeric types, the operand of the smaller type is implicitly converted to the larger type before the operation is performed. This is known as type promotion. Here, units (an int) is implicitly converted to double before the multiplication, so the result of the operation is also a double. Therefore, total_price is deduced to be of type double.
-   
-     auto total_price = price * units; // units will be implicitly converted to double
+    //Implicit and explicit Conversions
+//Promotion- type conversion the process of converting one data type to another.The computer takes the smallest data type and converts it to the largest data type.
+//Implicit conversion is done by the compiler automatically.
 
-     fmt::println("Total price : {}", total_price);
-     fmt::println("sizeof total_price : {}", sizeof(total_price));
+double price{45.6};
+int units{10};
+
+int x;
+double y{45.678};
+
+double s{12.5};
+double t{34.6};
+
+int sum=s+t;
+fmt::println("The value of sum is : {}", sum); // The value of sum is : 47
+
+ sum=static_cast<int> (s)+static_cast<int>(t); // The type of sum is int
+fmt::println("The value of sum is : {}", sum); // The value of sum is : 46
+
+sum=static_cast<int>(s+t);
+fmt::println("The value of sum is : {}", sum); // The value of sum is : 47
+//Old style C conversion static cast-NOT RECCOMMENDED IN MODERN C++
+double PI{3.14};
+
+int int_PI=static_cast<int>(PI);
+fmt::println("The value of int_PI is : {}", int_PI); // The value of int_PI is : 3
+fmt::println("The value of PI is : {}", PI); // The value of PI is : 3.14
 
 
-    //Implicit conversions in assignments
-    // The assignment operation is going to cause an implicit
-    // narrowing conversion , y is converted to int before assignment
-    int x;
-    double y {45.44};
-    x = y; // double to int
-    fmt::println("The value of x is : {}", x);
-    fmt::println("sizeof x : {}", sizeof(x));
+x=y; // The type of x is int
+fmt::println("The value of x is : {}", x); // The value of x is : 45
+fmt::println("The type of x is : {}", typeid(x).name()); // The type of x is : int
+fmt::println("The size of x is : {}", sizeof(x)); // The size of x is : 4
 
+auto total_price = price * units; // The type of total_price is double
+fmt::println("The total price is : {}", total_price); // The total price is : 456
+fmt::println("The type of total_price is : {}", typeid(total_price).name()); // The type of total_price is : double
+fmt::println("The size of total_price is : {}", sizeof(total_price));
 
-    // Explicit data conversions
-    // Implicit cast will add up the doubles,
-    // then turn result into int for assignment
-    double p {12.5};
-    double m {34.6};
-
-    int sum = p + m;
-    fmt::println("The sum is: {}", sum);
-
-    //Explicitly cast, then do the sum
-    sum = static_cast<int>(p) + static_cast<int>(m);
-    fmt::println("The sum is: {}", sum);
-    
-    //Explicit cast : sum up then cast, same thing as implicit cast
-    sum =  static_cast<int> (p + m);
-    fmt::println("Sum up then cast, result: {}", sum);
-    
-
-    //Old style C-cast
-    double PI {3.14};
-
-    //int int_pi = (int)(PI); // NOT RECOMMENDED IN MODERN C++
-    int int_pi = static_cast<int>(PI);
-    fmt::println("PI: {}", PI);
-    fmt::println("int_pi: {}", int_pi);
 }
 
-
 export void overflow_underflow(){
-    //Overflow and underflow
-    unsigned char data {250};
-    fmt::println("unsigned char min: {}, max: {} ", 
-                            std::numeric_limits<unsigned char>::min(),
-                            std::numeric_limits<unsigned char>::max());
-    ++data;
-    fmt::println("data: {}", static_cast<int>(data));   // 251
-    ++data;
-    fmt::println("data: {}", static_cast<int>(data));   // 252
-    ++data;
-    fmt::println("data: {}", static_cast<int>(data));   // 253
-    ++data;
-    fmt::println("data: {}", static_cast<int>(data));   // 254
-    ++data;
-    fmt::println("data: {}", static_cast<int>(data));   // 255
-    ++data; // Overflow to 256 which can't fit in a unsigned char
-    fmt::println("data: {}", static_cast<int>(data));   // 256 -> 0
+//overflow and underflow- 
 
-    //Underflow
-    data = 1;
+unsigned char data{250};
+fmt::println("The minimum value of data is {} and the maximum is {}", std::numeric_limits<unsigned char>::min(),std::numeric_limits<unsigned char>::max()); // The value of data is 250
 
-    --data;
-    fmt::println("data: {}", static_cast<int>(data));   //  0
-    --data; // Underflow: -1 can't fit in a unsigned char
-    fmt::println("data: {}", static_cast<int>(data));   //  0 -> 255
+++data; // Increments to 251
+fmt::println("The value of data is {}", data); // The value of data is 251
+++data; // Increments to 252
+fmt::println("The value of data is {}", data); // The value of data is 252
+++data; // Increments to 253
+fmt::println("The value of data is {}", data); // The value of data is 253
+++data; // Increments to 254
+fmt::println("The value of data is {}", data); // The value of data is 254
+++data; // Increments to 255
+fmt::println("The value of data is {}", data); // The value of data is 255++data; // Overflow
+++data; // Overflow
+fmt::println("The value of data is {}", data); // The value of data is 0
+fmt::println("The value has an overflow : {}",static_cast<int>(data)); // The value has an overflow : 0
+//underflow
+data=1;
+fmt::println("The value of data is {}", data); // The value of data is 1
+--data; // Decrements to 0
+fmt::println("The value of data is {}", data); // The value of data is 0
+--data; //Underflow--data to 255
+fmt::println("The value of data is {}", data); // The value of data is 255
+fmt::println("The value has an underflow : {}",static_cast<int>(data)); // The value has an underflow : 255
+
 }

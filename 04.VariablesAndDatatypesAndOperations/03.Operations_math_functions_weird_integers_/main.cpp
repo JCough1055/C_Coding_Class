@@ -1,34 +1,26 @@
 /*
-     . Topics: 
-        . Basic operations: 
-            . Addition, subtraction, multiplication, division, modulus
-            . Precedence and associativity
-            . Increment and decrement (prefix and postfix)
-            . Compound assignment operators (+=, -=, *=, /=, %=)
-            . Relational operators (==, !=, <, >, <=, >=)
-            . Logical operators (&&, ||, !)
-            . Math functions
-            . Weird integral types
-            . Data conversions: 
-                . Implicit conversions
-                . Explicit conversions
-                . Overflow and underflow   
+    . Project description
+        . Topic #1
+        . Topic #2
 */
 
 #include <fmt/format.h>
-
+#include <limits>
+#include<typeinfo>
 import utilities;
+int main(){
+    
+//basic_functions();
+//presedence_and_associativity();
+//postfix_increment_and_decrement();
+//compound_assignments();
+//relational_operators();
+//logical_operators();
+//logical_relations_ops_combnined();
+//math_functions();
+//weird_integer_types();
+//conversions();
+overflow_underflow();
 
-int main() {
-    //basic_operations();
-    //precedence_and_associativity();
-    //prefix_postfix_increment_decrement_operators();
-    //compound_assignment_operators();
-    //relational_operators();
-    //logical_operators();
-    //logical_relational_ops_combined();
-    //math_functions();
-    //weird_integral_types();
-    //conversions();
-    overflow_underflow();
+return 0;
 }
