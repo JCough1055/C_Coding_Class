@@ -1,21 +1,17 @@
 module;
-
-#include <SFML/Graphics.hpp> // Global module fragment
-
+#include<string>
+#include <SFML/Graphics.hpp>
 export module utilities; 
-
 export void app(){
-
-    //Store data in pre-defined variable
-    int width {200};
-    int height {200};
-    float circle_radius {100.f};
-    std::string title {"SFML works!"};
-    sf::Color shape_color{sf::Color::Green};
+    int width{350};
+    int height{350};
+    float circle_radius{150.f};
+    std::string title{"The circle is blue!"};
+    sf::Color shape_color{sf::Color::Magenta};
     sf::Color background_color{sf::Color::Red};
 
 
-	sf::RenderWindow window(sf::VideoMode(width, height), title);
+    sf::RenderWindow window(sf::VideoMode(width, height), title);
     sf::CircleShape shape(circle_radius);
     shape.setFillColor(shape_color);
 
@@ -32,5 +28,4 @@ export void app(){
         window.draw(shape);
         window.display();
     }
-
 }
