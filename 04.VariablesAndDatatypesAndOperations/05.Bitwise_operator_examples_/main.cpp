@@ -1,16 +1,20 @@
 /*
-    . Bitwise operator examples: 
-        . Masks
-        . Packing color information.
+    . Bitwise Operator Examples
+        . Mask
+        . Packing Color Information
 */
+
+
+
 
 import utilities;
 
-int main(){
 
-    //use_options_v0(false, false, true, true, true, false, true, false);
-    //fmt::println("----------------");
-    //use_options_v1(mask_bit_2 | mask_bit_3 | mask_bit_4 | mask_bit_6);
-    pack_color_information();
+int main(){
     
+//use_options_v0(true,false,true,false,true,false,true,false);
+//use_options_v1(mask_bit_3|mask_bit_5|mask_bit_6|mask_bit_7);
+pack_color_information();
+
+    return 0;
 }
