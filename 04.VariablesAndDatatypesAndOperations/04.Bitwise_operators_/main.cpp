@@ -1,19 +1,23 @@
 /*
-    . Topics: 
+    . Project description
         . Printing integers in binary
         . Shift operators
-        . Logical bitwise operators
-        . Compound bitwise operators
+        . Logical Bitwise operators
+        . Compound bitwisw operators
         . Masks
 */
-#include <fmt/format.h>
 
+#include <fmt/format.h>
 import utilities;
 
 int main(){
-    //print_ints_binary(); 
-    //bitwise_shift_operators();
-    //logical_bitwise_operators();
-    //compound_bitwise_operators();
-    masks();
+   
+//bitwise_shift();
+//logical_bitwise_operators();
+//compound_bitwise_operators();
+masks();
+
+
+
+    return 0;
 }
