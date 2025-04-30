@@ -1,15 +1,25 @@
 /*
-    . Explore the format library in C++20 and C++23
+    . Project description
+        . Topic #1
+        . Topic #2
 */
 
-//#include <format>
-//#include <print>
-#include <iostream>
 #include <fmt/format.h>
+#include <format> 
+#include <iostream>
+#include <print>
+#include <chrono>
+#include <fmt/chrono.h>
+
+
+
 
 import utilities;
 
 int main(){
-    //standard_format_facilities();
+
+
+    standard_format_facilities();
     external_format_facilities();
+    return 0;
 }

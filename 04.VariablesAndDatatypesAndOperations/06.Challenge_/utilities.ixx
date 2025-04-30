@@ -7,7 +7,7 @@ export void app(){
     int height{350};
     float circle_radius{150.f};
     std::string title{"The circle is blue!"};
-    sf::Color shape_color{sf::Color::Magenta};
+    sf::Color shape_color{sf::Color::White};
     sf::Color background_color{sf::Color::Red};
 
 

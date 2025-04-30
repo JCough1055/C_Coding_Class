@@ -1,241 +1,183 @@
-module; 
-
-//#include <format> //form std::format
-//#include <print>  // for std::print and std::println
+module;
 #include <fmt/format.h>
-#include <iostream> // for std::cout
+#include <format> 
+#include <iostream>
+#include <print>
+#include <chrono>
+#include <fmt/chrono.h>
 
-export module utilities;
+export module utilities; 
 
 export void standard_format_facilities(){
-    //This may not work on your compiler but it works on latest visual c++
-    //C++ 23 adds std::print and std::println, but they only work well on Visual C++.
-    //We'll stick to fmt going forward.
-    /*
-    auto value = std::format("Hello {}", " World!");
-    std::cout << value << "\n";
 
-    std::print("Hello, {}", "world\n");
-    std::print("Hello, {}!", "world\n");
-    std::println("Unformatted table : ");
-    std::println("{} {} {}", "Daniel", "Gray", "25");
-    std::println("{} {} {}", "Stanley", "Woods", "33");
-    std::println("{} {} {}", "Jordan", "Parker", "45");
-    std::println("{} {} {}", "Joe", "Ball", "21");
-    std::println("{} {} {}", "Josh", "Carr", "27");
-    std::println("{} {} {}", "Izaiah", "Robinson", "29");
-    
-    std::println("-----");
+// The C++23 library adds the std::print and std::println functions, which are similar to fmt::print and fmt::println.
+// The std::print function is used to print formatted output to the standard output stream (std::cout).
+// The std::println function is used to print formatted output to the standard output stream (std::cout) and adds a newline character at the end of the output.
+// The std::print function is similar to the fmt::print function, but it uses the new C++23 format library instead of the fmt library.
 
-    std::println("Formatted table : ");
-    std::println("{:<10} {:<10} {:<5}", "Lastname", "Firstname", "Age");
-    std::println("{:<10} {:<10} {:<5}", "Daniel", "Gray", "25");
-    std::println("{:<10} {:<10} {:<5}", "Stanley", "Woods", "33");
-    std::println("{:<10} {:<10} {:<5}", "Jordan", "Parker", "45");
-    std::println("{:<10} {:<10} {:<5}", "Joe", "Ball", "21");
-    std::println("{:<10} {:<10} {:<5}", "Josh", "Carr", "27");
-    std::println("{:<10} {:<10} {:<5}", "Izaiah", "Robinson", "29");
-    */
+auto value= std::format("Hello, {}!", "World");
+std::cout<<value<<"\n";
+
+std::println("Using std::print:Hello, {}!", "World");
+
+
+std::println("{}", value);
+std::println("Hello {}", "World");
+std::println("Hello {}", "World\n");
+
+std::println("Unformatted table: ");
+std::println( "{} {} {}","Daniel", "Aguia","28");
+std::println("{} {} {}","Jay","Coughlin","59");
+std::println("{} {} {}","Stanley","Woods","33");
+std::println("{} {} {}","Jordan","Parker","21");
+std::println("{} {} {}","Joe","Ball","27");
+std::cout<<"\n";
+
+std::println("Formatted table: ");
+std::println( "{:<10} {:<10} {:<5}","Daniel", "Aguia","28");// :< left justifyt with 10 spaces :> right justify with 10 spaces
+std::println("{:<10} {:<10} {:<5}","Jay","Coughlin","59");
+std::println("{:<10} {:<10} {:<5}","Stanley","Woods","33");
+std::println("{:<10} {:<10} {:<5}","Jordan","Parker","21");
+std::println("{:<10} {:<10} {:<5}","Joe","Ball","27");
+   
+
 }
 
-
 export void external_format_facilities(){
-    //Using the external format library
-    auto value = fmt::format("Hello, {}!", "world");
-  	std::cout << value << "\n";
-  	fmt::print("Hello, {}!", "world\n");
-  	fmt::println("Unformatted table : ");
-  	fmt::println("{} {} {}", "Daniel", "Gray", "25");
-  	fmt::println("{} {} {}", "Stanley", "Woods", "33");
-  	fmt::println("{} {} {}", "Jordan", "Parker", "45");
-  	fmt::println("{} {} {}", "Joe", "Ball", "21");
-  	fmt::println("{} {} {}", "Josh", "Carr", "27");
-  	fmt::println("{} {} {}", "Izaiah", "Robinson", "29");
 
-  	fmt::println("-----");
+    auto value= fmt::format("Hello, {}!", "World");
+fmt::println("{}",value);
+std::cout<<value<<"\n";
 
-  	fmt::println("Formatted table : ");
-  	fmt::println("{:<10} {:<10} {:<5}", "Lastname", "Firstname", "Age");
-  	fmt::println("{:<10} {:<10} {:<5}", "Daniel", "Gray", "25");
-  	fmt::println("{:<10} {:<10} {:<5}", "Stanley", "Woods", "33");
-  	fmt::println("{:<10} {:<10} {:<5}", "Jordan", "Parker", "45");
-  	fmt::println("{:<10} {:<10} {:<5}", "Joe", "Ball", "21");
-  	fmt::println("{:<10} {:<10} {:<5}", "Josh", "Carr", "27");
-  	fmt::println("{:<10} {:<10} {:<5}", "Izaiah", "Robinson", "29");
-
-  	fmt::println("-----");
-
-    // dynamic width
-  	int col_width{ 10 };
-  	fmt::println("Formatted table with dynamic width: ");
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Lastname", col_width, "Firstname", col_width, "Age", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Daniel", col_width, "Gray", col_width, "25", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Stanley", col_width, "Woods", col_width, "33", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Jordan", col_width, "Parker", col_width, "45", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Joe", col_width, "Ball", col_width, "21", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Josh", col_width, "Carr", col_width, "27", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Izaiah", col_width, "Robinson", col_width, "29", col_width / 2);
-
-  	fmt::println("-----");
-
-  	// right justified
-  	fmt::println("Right justified table:  ");
-  	col_width = 20;
-  	fmt::println("{:>{}} {:>{}} {:>{}}", "Lastname", col_width, "Firstname", col_width, "Age", col_width / 2);
-  	fmt::println("{:>{}} {:>{}} {:>{}}", "Daniel", col_width, "Gray", col_width, "25", col_width / 2);
-  	fmt::println("{:>{}} {:>{}} {:>{}}", "Stanley", col_width, "Woods", col_width, "33", col_width / 2);
-  	fmt::println("{:>{}} {:>{}} {:>{}}", "Jordan", col_width, "Parker", col_width, "45", col_width / 2);
-  	fmt::println("{:>{}} {:>{}} {:>{}}", "Joe", col_width, "Ball", col_width, "21", col_width / 2);
-  	fmt::println("{:>{}} {:>{}} {:>{}}", "Josh", col_width, "Carr", col_width, "27", col_width / 2);
-  	fmt::println("{:>{}} {:>{}} {:>{}}", "Izaiah", col_width, "Robinson", col_width, "29", col_width / 2);
-
-  	fmt::println("-----");
-
-  	// left justified
-  	fmt::println("Left justified table :  ");
-  	col_width = 20;
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Lastname", col_width, "Firstname", col_width, "Age", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Daniel", col_width, "Gray", col_width, "25", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Stanley", col_width, "Woods", col_width, "33", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Jordan", col_width, "Parker", col_width, "45", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Joe", col_width, "Ball", col_width, "21", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Josh", col_width, "Carr", col_width, "27", col_width / 2);
-  	fmt::println("{:<{}} {:<{}} {:<{}}", "Izaiah", col_width, "Robinson", col_width, "29", col_width / 2);
-
-  	fmt::println("-----");
-
-    // Internal justified
-  	fmt::println("Internal justified: ");
-  	fmt::print("{:>10}\n", -123.45);
-  	fmt::print("{:^10}\n", -123.45);
-  	fmt::print("{:<10}\n", -123.45);
-
-  	fmt::println("-----");
-
-    // setfill
-  	fmt::println("Table with fill characters :  ");
-  	col_width = 20;
-  	fmt::println("{:*<{}} {:*<{}} {:*<{}}", "Lastname", col_width, "Firstname", col_width, "Age", col_width / 2);
-  	fmt::println("{:*<{}} {:*<{}} {:*<{}}", "Daniel", col_width, "Gray", col_width, "25", col_width / 2);
-  	fmt::println("{:*<{}} {:*<{}} {:*<{}}", "Stanley", col_width, "Woods", col_width, "33", col_width / 2);
-  	fmt::println("{:*<{}} {:*<{}} {:*<{}}", "Jordan", col_width, "Parker", col_width, "45", col_width / 2);
-  	fmt::println("{:*<{}} {:*<{}} {:*<{}}", "Joe", col_width, "Ball", col_width, "21", col_width / 2);
-  	fmt::println("{:*<{}} {:*<{}} {:*<{}}", "Josh", col_width, "Carr", col_width, "27", col_width / 2);
-  	fmt::println("{:*<{}} {:*<{}} {:*<{}}", "Izaiah", col_width, "Robinson", col_width, "29", col_width / 2);
-
-  	fmt::println("-----");
-
-    //control bool output format : 1/0 or true/false
-  	bool condition{ true };
-  	bool other_condition{ false };
-
-  	fmt::println("condition: {}", condition);// true
-  	fmt::println("other_condition: {}", other_condition);// false
-
-  	// This is a hack - ref: https://github.com/fmtlib/fmt/issues/170
-  	fmt::println("condition: {:d}", condition);
-  	fmt::println("other_condition: {:d}", other_condition);
-
-  	fmt::println("-----");
+fmt::println("Using fmt::print:Hello, {}!", "World");
 
 
-    //show or hide the +  sign for positive numbers
-  	fmt::println("show or hide the +  sign for positive numbers: ");
-  	int pos_num{ 34 };
-  	int neg_num{ -45 };
+fmt::println("{}", value);
+fmt::println("Hello {}", "World");
+fmt::println("Hello {}", "World\n");
 
-  	fmt::println("pos_num: {}", pos_num);
-  	fmt::println("neg_num: {}", neg_num);
+fmt::println("Unformatted table: ");
+fmt::println( "{} {} {}","Daniel", "Aguia","28");
+fmt::println("{} {} {}","Jay","Coughlin","59");
+fmt::println("{} {} {}","Stanley","Woods","33");
+fmt::println("{} {} {}","Jordan","Parker","21");
+fmt::println("{} {} {}","Joe","Ball","27");
+std::cout<<"\n";
 
-  	fmt::println("pos_num: {:+}", pos_num);
-  	fmt::println("neg_num: {:-}", neg_num);
-
-  	fmt::println("-----");
-
-
-    // different number systems : std::dec, std::hex, std::oct
-  	fmt::println("different number systems: dec, hex, oct");
-  	int pos_int{ 717171 };
-  	int neg_int{ -5 };
-  	double double_var{ 498.32 };
-
-  	fmt::println("default base format : ");
-  	fmt::println("pos_int : {}", pos_int);
-  	fmt::println("neg_int : {}", neg_int);
-  	fmt::println("double_var : {}", double_var);
-
-  	fmt::println("pos_int in different bases : ");
-  	fmt::println("pos_int (dec) : {}", pos_int); // Default
-  	fmt::println("pos_int (hex) : {:x}", pos_int);
-  	fmt::println("pos_int (hex) : {:X}", pos_int);
-  	fmt::println("pos_int (oct) : {:o}", pos_int);
-  	fmt::println("pos_int (binary) : {:b}", pos_int);
-  	fmt::println("pos_int (decimal) : {:d}", pos_int);
-
-  	fmt::println("neg_int in different bases : ");
-  	fmt::println("neg_int (dec) : {}", neg_int);
-  	fmt::println("neg_int (hex) : {:x}", neg_int);
-  	fmt::println("neg_int (oct) : {:o}", neg_int);
-  	fmt::println("neg_int (binary) : {:032b}", neg_int);// Prints the pos number representation prepended with a negative
-                                                      	// sign. Make sure this is what you want.
-  	fmt::println("neg_int (decimal) : {:d}", neg_int);
+fmt::println("Formatted table: ");
+fmt::println( "{:<10} {:<10} {:<5}","Daniel", "Aguia","28");// :< left justifyt with 10 spaces. if you wnat right justify then use :> right justify with 10 spaces
+fmt::println("{:<10} {:<10} {:<5}","Jay","Coughlin","59");
+fmt::println("{:<10} {:<10} {:<5}","Stanley","Woods","33");
+fmt::println("{:<10} {:<10} {:<5}","Jordan","Parker","21");
+fmt::println("{:<10} {:<10} {:<5}","Joe","Ball","27");
+std::cout<<"\n";
+int col_width{10};
+fmt::println("{:<{}} {:<{}} {:<{}}","Daniel", col_width, "Aguia", col_width, "28", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Jay", col_width, "Coughlin", col_width, "59", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Stanley", col_width, "Woods", col_width, "33", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Jordan", col_width, "Parker", col_width, "21", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Joe", col_width, "Ball", col_width, "27", col_width/2);
+std::cout<<"\n";
+col_width=20;
+fmt::println("the column width is set to 20");
+fmt::println("{:<{}} {:<{}} {:<{}}","Daniel", col_width, "Aguia", col_width, "28", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Jay", col_width, "Coughlin", col_width, "59", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Stanley", col_width, "Woods", col_width, "33", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Jordan", col_width, "Parker", col_width, "21", col_width/2);
+fmt::println("{:<{}} {:<{}} {:<{}}","Joe", col_width, "Ball", col_width, "27", col_width/2);
+std::cout<<"\n";
+//Internal Justified
+fmt::println("the data is internal justified");
+fmt::println("{:^{}} {:^{}} {:^{}}","Daniel", col_width, "Aguia", col_width, "28", col_width/2);
+fmt::println("{:^{}} {:^{}} {:^{}}","Jay", col_width, "Coughlin", col_width, "59", col_width/2);
+fmt::println("{:^{}} {:^{}} {:^{}}","Stanley", col_width, "Woods", col_width, "33", col_width/2);
+fmt::println("{:^{}} {:^{}} {:^{}}","Jordan", col_width, "Parker", col_width, "21", col_width/2);
+fmt::println("{:^{}} {:^{}} {:^{}}","Joe", col_width, "Ball", col_width, "27", col_width/2);
 
 
-    // We'll see more about floating point format specifiers shortly.
-  	fmt::println("double_var in different formats: ");
-  	fmt::println("double_var (default): {}", double_var);
-  	fmt::println("double_var (fixed): {:f}", double_var);
-  	fmt::println("double_var (scientific): {:e}", double_var);
-  	fmt::println("double_var (general): {:g}", double_var);
+fmt::println("{:^10}",-123.456);
+fmt::println("{:<10}",-123.456);
+fmt::println("{:>10}",-123.456);
 
-  	fmt::println("-----");
+fmt::println("{:*<{}} {:*<{}} {:*<{}}","Daniel", col_width, "Aguia", col_width, "28", col_width/2);
+fmt::println("{:*<{}} {:*<{}} {:*<{}}","Jay", col_width, "Coughlin", col_width, "59", col_width/2);
+fmt::println("{:*<{}} {:*<{}} {:*<{}}","Stanley", col_width, "Woods", col_width, "33", col_width/2);
+fmt::println("{:*<{}} {:*<{}} {:*<{}}","Jordan", col_width, "Parker", col_width, "21", col_width/2);
+fmt::println("{:*<{}} {:*<{}} {:*<{}}","Joe", col_width, "Ball", col_width, "27", col_width/2);
+std::cout<<"\n";
 
-  	// uppercase and nouppercase
-  	fmt::println("uppercase and nouppercase: ");
-  	pos_int = 717171;
-  	fmt::println("pos_int (nouppercase - default): ");
-  	fmt::println("pos_int (dec): {}", pos_int);
-  	fmt::println("pos_int (hex): {:x}", pos_int);
-  	fmt::println("pos_int (oct): {:o}", pos_int);
+auto now = std::chrono::system_clock::now();
+std::cout << fmt::format("Current date and time: {:%Y-%m-%d %H:%M:%S}\n", now);
 
-  	// For integers, the # toogles the alternative format flag. This shows the base prefix like 0b, and 0x.
-  	fmt::println("pos_int (uppercase): ");
-  	fmt::println("{:#X}", pos_int);
-  	fmt::println("{:#B}", pos_int);
+ fmt::print(" ");
 
-  	fmt::println("-----");
+ bool condition{true};
+ bool condition2{false};
+    fmt::print("Condition is {} and condition2 is {}\n", condition, condition2);
 
-  	// fixed and scientific : for floating point values
-  	// control the precision.
-  	fmt::println("fixed and scientific: for floating point values: ");
-  	double a{ 3.1415926535897932384626433832795 };
-  	double b{ 2006.0 };
-  	double c{ 1.34e-10 };
+    fmt::println(" condition is {:d} and condition2 is {:d}", condition, condition2);
 
-  	fmt::println("double values (default : use scientific where necessary) : ");
-  	fmt::println("a : {}", a);
-  	fmt::println("b : {}", b);
-  	fmt::println("c : {}", c);
+    int pos_num{45};
+    int neg_num{-35};
+    fmt::println("Positive number is {} ", pos_num);
 
-  	fmt::println("double values (precision) : ");
-  	fmt::println("a: {:.6}", a);
-  	fmt::println("b: {:.6}", b);
-  	fmt::println("c: {:.6}", c);
+    fmt::println(" ");
+    fmt::println("Negative number is {}",  neg_num);
+    fmt::println("Positive number is {:+} ", pos_num);
+    fmt::println("Negative number is {:-}",  neg_num);
+    int pos_num2{717171};
+    int neg_num2{-53289};
+    double double_var{432.98};
+    fmt::println("Positive number is {:+} ", pos_num2);
+    fmt::println("Negative number is {:-}",  neg_num2);
+    fmt::println("Value of double is : {:+}", double_var);
+    fmt::println("numbers in different numbering systems:");
+    fmt::println("this is an example if decimal number: {}", pos_num2);//decimal is default
+    fmt::println("this is an example of hex number: {:x}", pos_num2);
+    fmt::println("this is an example of capitolnhex number: {:X}", pos_num2);
+    fmt::println("this is an example of octal number: {:o}", pos_num2);
+    fmt::println("this is an example of binary number: {:b}", pos_num2);
 
-  	fmt::println("double values (fixed) : ");
-  	fmt::println("a: {:.6f}", a);
-  	fmt::println("b: {:.6f}", b);
-  	fmt::println("c: {:.6f}", c);
+    fmt::println("this is an example if decimal number: {}", neg_num2);//decimal is default
+    fmt::println("this is an example of hex number: {:x}", neg_num2);
+    fmt::println("this is an example of capitolnhex number: {:X}", neg_num2);
+    fmt::println("this is an example of octal number: {:o}", neg_num2);
+    fmt::println("this is an example of binary number: {:b}", neg_num2);
+    fmt::println("this is an example of binary number: {:032b}", neg_num2);
 
-  	fmt::println("double values (scientific) : ");
-  	fmt::println("a: {:.6e}", a);
-  	fmt::println("b: {:.6e}", b);
-  	fmt::println("c: {:.6e}", c);
+    fmt::println("double var in different formats:");
+    fmt::println("double_var (default): {}", double_var);//decimal is default
+    fmt::println("double_var (fixed): {:f}", double_var);
+    fmt::println("double_var (scientific): {:e}", double_var);
+    fmt::println("double_var (scientific): {:E}", double_var);
 
-  	fmt::println("-----");
+    double a{3.1415926535897932384626433832795};
+    double b{2006.8};
+    double c{1.34e-10};
 
-  	// argument indexes: Allow us to order arguments. This is good for example for applications that use localization.
-  	fmt::println("argument indexes: ");
-  	fmt::println("It's {:.2f} degrees outside and it's {}", 34.5, "sunny");
-  	fmt::println("It's {1} today. And the temperature is {0:.2f} degrees outside", 34.5, "sunny");
+    fmt::println("double values(default):use scientific when necessary ");
+    fmt::println("double a: {}",a);
+    fmt::println("double b: {}",b);
+    fmt::println("double c: {}", c);
+
+    fmt::println("double values with precision ");
+    fmt::println("double a: {:.6}",a);
+    fmt::println("double b: {:.6}",b);
+    fmt::println("double c: {:.6}", c);
+
+    fmt::println("double values fixed ");
+    fmt::println("double a: {:.6f}",a);
+    fmt::println("double b: {:.6f}",b);
+    fmt::println("double c: {:.6f}", c);
+
+    fmt::println("double values scientific ");
+    fmt::println("double a: {:.6e}",a);
+    fmt::println("double b: {:.6e}",b);
+    fmt::println("double c: {:.6e}", c);
+
+    fmt::println("this is about agrgument indexes:");
+    fmt::println("It is {} degrees out and it is {}",45.3,"sunny");
+    fmt::println("this is about agrgument indexes:");
+    fmt::println("It is {1} degrees out and it is {0:.2f}",45.3,"sunny");
+
 }
