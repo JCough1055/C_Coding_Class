@@ -6,6 +6,7 @@
 
 #include <fmt/format.h>
 #include <vector>
+#include <iostream>
 import utilities;
 
 int main(){
@@ -136,6 +137,30 @@ std::vector<int> vec9{6, 7, 8,9,10};
   for(const auto& element: vec9){
     fmt::println("{}", element);
   }
+   std::vector<int> numbers= {12,2,3,2,4,5,6,1};
+int min_value{numbers.at(0)};
+    int max_value{numbers.at(0)};
+   if (numbers.size()==0){
+        std::cout<<"Error. Please fill the vector"<<"\n";
+    }
+    else{
+      for (size_t i{0};i<numbers.size();++i)
+    {if (numbers[i]<min_value)
+    min_value=numbers[i];
+    if (numbers[i]>max_value)
+    max_value=numbers[i];}}
+
+       std::vector<int> vec10= {1,2,3,4,5};
+    int value{10};
+    int index{3};
+    
+    if (index>=vec10.size()){
+        std::cout<<"Error. Index cannot be greater than the vector size"<<"\n";
+    }
+else{
+vec10.push_back(0);
+vec10.insert(vec10.begin() + index, value);
+ vec10.pop_back();  }
 
     return 0;
 }
