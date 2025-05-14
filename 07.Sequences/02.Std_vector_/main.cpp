@@ -46,9 +46,13 @@ fmt::println("Last Element : {} ",vec.back());
 //replace the vector elements with 7 using the std::fill command
 std::fill(vec.begin(),vec.end(),7);
   for(size_t i{0};i<vec.size();i++){
-    fmt::println("Vector element [{}]  is: {}", i,vec[i]); }
+    fmt::println("Vector element [{}]  is: {}", i,vec[i]); 
+}
+
+
 //create a vector of integers with 5 elements.it will be initialized with 0.
     std::vector <int> vec2(5);
+   
     //print the vector elements using range-based for loop
      for(const auto& element: vec2){
         fmt::print(" {} ",element);
