@@ -5,18 +5,14 @@
 */
 
 #include <fmt/format.h>
+#include <iostream>
+
 import utilities;
 
 int main(){
-    fmt::print("Hello, World!\n");
-    fmt::print("One\n");
-    fmt::print("Two\n");
-    fmt::print("Three\n");
-    int a=44;
-    int b=22;
-    int sum=a+b;
-    fmt::print("Sum of {} and {} is {}\n", a, b, sum);
-
-    
+//declaration_initialization();
+//size_of_an_array();
+//array_of_charachters();
+//array_bounds();
     return 0;
 }
