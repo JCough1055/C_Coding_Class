@@ -1,16 +1,19 @@
 /*
-    . Pointers: 
-        . Topics: (Each of these may be a lecture)
-            . Pointer basics: declaration and initialization
-            . Pointers and constness
-            . Pointers and arrays
-            . Pointer arithmetic
+    . Project description
+        . Topic #1
+        . Topic #2
 */
 
 #include <fmt/format.h>
+#include <iostream>
 import utilities;
 
 int main(){
+    //pointer_basics();
+//const_and_pointer_basics();
+//arrays_and_pointers();
+pointer_arithmetic();
+ 
 
-   pointer_basics(); 
+    return 0;
 }
