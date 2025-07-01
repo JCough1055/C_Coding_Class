@@ -52,6 +52,9 @@ namespace pointers_3
         int *p_arr1{ arr1 };
         int *p_arr0{ arr0 };
 
+        fmt::println("original array 0 is {} {} {} {} {}", arr0[0], arr0[1], arr0[2], arr0[3], arr0[4]);
+        fmt::println("original array 1 is {} {} {} {} {}", arr1[0],arr1[1],arr1[2],arr1[3],arr1[4]); 
+
 
         // Swapping data the hard way
         /*

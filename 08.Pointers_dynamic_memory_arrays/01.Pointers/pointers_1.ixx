@@ -9,7 +9,8 @@ module;
 export module pointers_1;
 
 namespace pointers_1{
-    export void pointer_declaration_initialization(){
+
+export void pointer_declaration_initialization(){
 
         //1.Declaring and using pointers
         int *p_number{};// Will initialize with nullptr
@@ -39,6 +40,24 @@ namespace pointers_1{
 
         fmt::println("int var: {}", int_var);
         fmt::println("address of int_var: {}", fmt::ptr(p_int));
+        int val1{10};
+        int *p_val1=&val1;;
+        // Prints the value of val1 and the address of val1
+        fmt::println("Value of val1: {} ", val1);
+        fmt::print("Address of val1: {:p}\n", (void*)&val1);
+
+        //This prints the value of address of the pointer p_val and the address for p_val itself
+        fmt::println("The address in the pointer is : {}", fmt::ptr(p_val1));
+        fmt::print("Address of p_val1 itself: {:p}\n", (void*)&p_val1);
+
+        //Multiple ways to print the address in the pointer
+        fmt::println("The address of val1 is : {}", fmt::ptr(&val1));
+        fmt::println("The value of p_val1 is : {}", *p_val1);
+        fmt::print("Address of *p_val1 (which is val1): {:p}\n", (void*)p_val1);
+        p_val1=&int_var;
+        fmt::println("p_val which is p_int: {}", fmt::ptr(p_val1));
+       
+        
 
 
         // You can also change the address stored in a pointer any time
@@ -76,10 +95,16 @@ namespace pointers_1{
 
         // Allow users to modify the string
         char message1[]{ "Hello World!" };
-        //message1[0] = 'B';
+        //message1[3] = 'B';
         *message1 = 'B';
         fmt::println("message1: {}", message1);
 
     }
 
-}   //namespace pointers_1
+
+
+
+}
+    
+
+

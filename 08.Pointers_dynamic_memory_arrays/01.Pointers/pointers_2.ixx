@@ -56,6 +56,21 @@ namespace pointers_2
         fmt::println( "number1: {}" , number1 );
         fmt::println( "number2: {}" , number2 );
 
+        int number5{33};
+        int *p_number5=&number5;
+        fmt::println( "p_number5: {}" , fmt::ptr(p_number5));
+        fmt::println( "*p_number5: {}" , *p_number5 );
+
+        number5=100;
+         fmt::println( "p_number5: {}" , fmt::ptr(p_number5));
+        fmt::println( "*p_number5: {}" , *p_number5 );
+        
+        p_number5=&number1;
+        fmt::println( "p_number5: {}" , fmt::ptr(p_number5));
+        fmt::println( "*p_number5: {}" , *p_number5 );
+        fmt::println( "number1: {}" , number1 );
+        fmt::println( "number5: {}" , number5 );
+
     }
 
 
