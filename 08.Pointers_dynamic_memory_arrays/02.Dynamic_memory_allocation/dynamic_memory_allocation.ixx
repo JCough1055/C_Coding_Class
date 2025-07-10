@@ -149,7 +149,7 @@ namespace dynamic_memory_allocation
         */
 
         // Case 3 : Multiple pointers pointing to same address
-        /*
+      /*  
         fmt::println("");
         fmt::println( "Case 3 : Multiple pointers pointing to same address : " );
 
@@ -262,14 +262,14 @@ namespace dynamic_memory_allocation
         }catch(std::exception& ex){
             fmt::println("Something went wrong: {}", ex.what());
         }
-        */
-
+        
+*/
 
         //We don't want to use exceptions, but we still want to avoid a crash
         // std::nothrow
         for (size_t i{ 0 }; i < 100; ++i) {
 
-            int *data = new (std::nothrow) int[1000000000000000];
+            int *data = new (std::nothrow) int[10000000000000];
 
             if (data != nullptr) {
                 fmt::println("Data allocated");
@@ -361,14 +361,16 @@ namespace dynamic_memory_allocation
         if (p_scores) {
             fmt::println("size of scores (it's a regular pointer): {}", sizeof(p_scores));
             fmt::println("Successfully allocated memory for scores.");
+            fmt::println("The address of p_scores is {}", fmt::ptr(p_scores));
 
             // Print out elements. Can use regular array access notation, or pointer arithmetic
             for (size_t i{}; i < size; ++i) {
                 fmt::println("value: {}: {}", p_scores[i], *(p_scores + i)); 
             }
         }
-
-
+            for (size_t i{}; i < size; ++i) {
+                fmt::println("value: {}: {}", p_salaries[i], *(p_salaries + i)); 
+            }
         //Release the memory
         delete[] p_salaries;
         p_salaries = nullptr;
@@ -398,7 +400,7 @@ namespace dynamic_memory_allocation
             fmt::print( "value : " , s );
         }
         */
-
+delete[] p_scores1;
     }
 
 

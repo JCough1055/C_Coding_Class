@@ -21,6 +21,6 @@ target_sources(${PROJECT_NAME}
         PUBLIC
         FILE_SET CXX_MODULES FILES
         utilities.ixx
-        dynamic_memory_allocation_1.ixx
+        dynamic_memory_allocation.ixx
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)

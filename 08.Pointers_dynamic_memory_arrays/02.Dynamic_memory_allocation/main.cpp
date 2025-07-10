@@ -1,6 +1,5 @@
 /*
-    . Dynamic memory allocation and pointers
-    . Topics: 
+    .Dynamic Memory allocation and pointers
         . new and delete
         . dangling pointers
         . when new fails
@@ -10,9 +9,12 @@
         . static arrays vs dynamic arrays
 */
 
+#include <fmt/format.h>
 import utilities;
 
 int main(){
-    dynamic_memory_allocation_demo();
+dynamic_memory_allocation_demo();
+
     
+    return 0;
 }
