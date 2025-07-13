@@ -1,0 +1,3 @@
+C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers/CMakeFiles/Rocket.dir
+C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers/CMakeFiles/edit_cache.dir
+C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers/CMakeFiles/rebuild_cache.dir

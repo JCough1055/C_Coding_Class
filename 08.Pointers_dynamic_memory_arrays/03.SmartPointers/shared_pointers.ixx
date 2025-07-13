@@ -1,5 +1,3 @@
-module;
-
 #include <fmt/format.h>
 #include <memory>
 
@@ -13,15 +11,19 @@ namespace shared_pointers
         {
             std::shared_ptr<int> int_ptr_1 {new int{20}};
             fmt::println( "The pointed to value is: {}" , *int_ptr_1 );
+            fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_1.get() )); 
             *int_ptr_1 = 40; // Use the pointer to assign
             fmt::println( "The pointed to value is: {}" , *int_ptr_1 );
+            fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_1.get() ));
             fmt::println( "Use count: {}" , int_ptr_1.use_count() ); //1
             
             //Copying
             std::shared_ptr<int> int_ptr_2 = int_ptr_1; // Use count : 2
             fmt::println( "The pointed to value is (through int_ptr2): {}" , *int_ptr_2 );
+             fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_2.get() )); 
             *int_ptr_2 = 70;
             fmt::println( "The pointed to value is (through int_ptr2): {}" , *int_ptr_2 );
+            fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_2.get() )); 
             fmt::println( "Use count for int_ptr_1: {}" , int_ptr_1.use_count() );
             fmt::println( "Use count for int_ptr_2: {}" , int_ptr_2.use_count() );
 
@@ -29,15 +31,17 @@ namespace shared_pointers
             fmt::println( "-----" );
             std::shared_ptr<int> int_ptr_3; // nullptr
             int_ptr_3 = int_ptr_1; // Use count : 3
-
+            fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_3.get() )); 
             std::shared_ptr<int> int_ptr_4{nullptr};
             int_ptr_4 = int_ptr_1; // Use count : 4
-
+            fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_4.get() )); 
             std::shared_ptr<int> int_ptr_5{int_ptr_1}; // Use count : 5
 
             fmt::println( "The pointed to value is (through int_ptr5): {}" , *int_ptr_5 );
+            fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_5.get() )); 
             *int_ptr_5 = 100;
             fmt::println( "The pointed to value is (through int_ptr5): {}" , *int_ptr_5 );
+            fmt::println( "The pointed to address is: {}" , fmt::ptr(int_ptr_5.get() )); 
 
             fmt::println( "Use count for int_ptr_1: {}" , int_ptr_1.use_count() );
             fmt::println( "Use count for int_ptr_2: {}" , int_ptr_2.use_count() );

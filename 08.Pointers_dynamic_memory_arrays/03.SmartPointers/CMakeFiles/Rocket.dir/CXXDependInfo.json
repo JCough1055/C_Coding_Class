@@ -1,0 +1,53 @@
+{
+	"bmi-installation" : null,
+	"compiler-frontend-variant" : "GNU",
+	"compiler-id" : "GNU",
+	"compiler-simulate-id" : "",
+	"config" : "",
+	"cxx-modules" : 
+	{
+		"CMakeFiles/Rocket.dir/shared_pointers.ixx.obj" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "",
+			"source" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers/shared_pointers.ixx",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		},
+		"CMakeFiles/Rocket.dir/unique_pointers.ixx.obj" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "",
+			"source" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers/unique_pointers.ixx",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		},
+		"CMakeFiles/Rocket.dir/utilities.ixx.obj" : 
+		{
+			"bmi-only" : false,
+			"destination" : null,
+			"name" : "CXX_MODULES",
+			"relative-directory" : "",
+			"source" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers/utilities.ixx",
+			"type" : "CXX_MODULES",
+			"visibility" : "PUBLIC"
+		}
+	},
+	"dir-cur-bld" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers",
+	"dir-cur-src" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers",
+	"dir-top-bld" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers",
+	"dir-top-src" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers",
+	"exports" : [],
+	"forward-modules-from-target-dirs" : [],
+	"include-dirs" : 
+	[
+		"vcpkg_installed\\x64-windows\\include"
+	],
+	"language" : "CXX",
+	"linked-target-dirs" : [],
+	"module-dir" : "C:/Users/mjcog/Documents/CogsCoding/cpp23m-main/08.Pointers_dynamic_memory_arrays/03.SmartPointers/CMakeFiles/Rocket.dir"
+}
