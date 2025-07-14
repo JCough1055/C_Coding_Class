@@ -1,22 +1,19 @@
 /*
-    . Project description
-        . Topic #1
-        . Topic #2
+    . Exploring references
+    .Topics:
+        . Declaring and using references
+        . Comparing pointers ot references
+        . References and const
+        . References with renge based for loop
 */
 
-#include <fmt/format.h>
 import utilities;
 
 int main(){
-    fmt::print("Hello, World!\n");
-    fmt::print("One\n");
-    fmt::print("Two\n");
-    fmt::print("Three\n");
-    int a=44;
-    int b=22;
-    int sum=a+b;
-    fmt::print("Sum of {} and {} is {}\n", a, b, sum);
 
-    
+   // declaring_and_using_references();
+   //comparing_pointers_and_references();
+   //references_and_const();
+   ref_with_range_based_for_loop();
     return 0;
 }
