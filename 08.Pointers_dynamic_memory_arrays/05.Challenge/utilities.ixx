@@ -1,7 +1,8 @@
 module;
-
-#include <fmt/format.h>
+#include<string>
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Event.hpp>
+#include <SFML/Graphics/Text.hpp>
 #include <iostream>
 #include <vector>
 #include <array>
@@ -9,269 +10,318 @@ module;
 #include <memory>
 
 export module utilities; 
-
-//Storing our data in an std::vector: The best way to go
+//Managing memory through std::vector..The best way to go!
 namespace dm_1
 {
-       export void app(){
-
-        //Store data in pre-defined variable
-        constexpr int width {600};
-        constexpr int height {600};
-        constexpr float circle_radius {40.f};
-        constexpr float clock_period{.02f};
-        const std::string title {"SFML Shape Animator"};
-        sf::Color shape_color{sf::Color::Green};
+export void app(){
+        constexpr int width{600};
+        constexpr int height{600};
+        constexpr float circle_radius{40.f};
+        constexpr float clock_period{1.f};
+        const std::string title{"SFML Shape Animator!"};
+        sf::Color shape_color{sf::Color::White};
         sf::Color background_color{sf::Color::Black};
+        sf::Clock clock; //Timer starts ticking the moment the clock is created
+        unsigned int counter{0};
+        constexpr float move_interval {.05f};
+        
+    
 
-        sf::RenderWindow window(sf::VideoMode(width, height), title);
+ sf::RenderWindow window(sf::VideoMode(width, height), title);
+        //sf::CircleShape shape(circle_radius);
+        //shape.setFillColor(shape_color);
 
-        //Vector to store multiple shpes
-        std::vector < sf::CircleShape> shapes;
+std::vector<sf::CircleShape> shapes; //setup of vector to contain circles in vector shapes
+std::vector<sf::Vector2f> directions;// Vector to store movement direction in x and y coordinates
+sf::Color color[4] {sf::Color::Red,sf::Color::White,sf::Color::Blue,sf::Color::Magenta};
 
-        //Vector to store the movement direction for each shape
-        std::vector<sf::Vector2f> directions;
 
-        //Set up the shapes
-        for(size_t i{0}; i < 5; ++i){
-            sf::CircleShape shape(circle_radius);
-            shape.setPosition(100.f * (i +1), 100.f);
-            shape.setFillColor(sf::Color(50 * i, 100 + (30 * i), 200 - (40 * i)));
-            shapes.push_back(shape);
+       //set up the different circles
+    for(size_t i{0};i<5;++i){
+     sf::CircleShape shape(circle_radius);
+     shape.setPosition(100.f*(i+1),100.f);
+     shape.setFillColor(sf::Color((50*i),(100+30*i),200-(40*i)));
+     shapes.push_back(shape);
 
-            //Initial direction for each shape (moving diagonally)
-            directions.push_back(sf::Vector2f(20.f, 20.f));
-        }
-
-        //Timer setup
-        sf::Clock clock;
-        constexpr float move_interval {0.05f}; // Move shapes every 50 milliseconds
-
+     directions.push_back(sf::Vector2f(20.f,20.f));
+    }
         while (window.isOpen())
         {
             sf::Event event;
-            while (window.pollEvent(event))
+        while (window.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed){
                     window.close();
-                }
-
-                //Key Events
-                if(event.type == sf::Event::KeyPressed){
-                    if(event.key.code == sf::Keyboard::Escape){
-                        window.close();
-                    }
-                }
             }
 
-            //Timer based movement
-            if(clock.getElapsedTime().asSeconds() > move_interval){
-                for(size_t i{0}; i< shapes.size(); ++i){
-                    auto& shape = shapes[i];
-                    auto& direction = directions[i];
-
-                    // Get the current position of the shape
-                    sf::Vector2f position = shape.getPosition();
-
-                    // Check for collisions with window edges and reverse direction
-                    if (position.x <= 0.f || position.x + circle_radius * 2 >= width) {
-                        direction.x = -direction.x; // Reverse horizontal direction
-                    }
-                    if (position.y <= 0.f || position.y + circle_radius * 2 >= height) {
-                        direction.y = -direction.y; // Reverse vertical direction
-                    }
-
-                    //Move the shapes in the current direction
-                    shape.move(direction);
+            //Key events
+        if (event.type== sf::Event::KeyPressed){
+                if (event.key.code==sf::Keyboard::Escape){
+                    window.close();
+                std::cout<<"Escape key pressed- Application has ended"<<std::endl;
                 }
-                clock.restart();
             }
-
-            window.clear(background_color);
-            for(size_t i{0}; i < shapes.size(); ++i){
-                window.draw(shapes[i]);
-            }
-            window.display();
+            
         }
-    }
-    
-} // namespace dm_1
+        
+ /*
+   if (event.type== sf::Event::KeyPressed){
+   
+                if (event.key.code==sf::Keyboard::Space){
+                   for(size_t i{0};i<shapes.size();++i){
+                    auto direction= directions[i];
+                    shapes[i].move(direction);
+                   }
+                std::cout<<"Space key pressed- Something should happen"<<std::endl;
+                }
+          
 
-//Storing shapes on the heap and managing memory manually through new and delete: The worst way
+        }
+                 */ 
+                //timer based movements
+        if(clock.getElapsedTime().asSeconds()>move_interval){
+            for (size_t i{0};i<shapes.size();++i){
+                auto& shape= shapes[i];
+                auto& direction=directions[i];
+                //Get the current position of the shape
+                sf::Vector2f position =shape.getPosition();
+                //Check for collisions with window edges and reverse directions
+                if(position.x<=0.f||position.x+ circle_radius*2>=width){
+                        direction.x=-direction.x; }//reverse horizontal directions
+                if(position.y<=0.f||position.y+ circle_radius*2>=height){
+                        direction.y=-direction.y; //reverse vertical directions
+                        }
+               shape.move(direction);
+                }
+             clock.restart();    
+        }
+        
+        
+    
+            window.clear(background_color);
+            //window.draw(shape);
+            for(size_t i{0};i<shapes.size();++i){
+                window.draw(shapes[i]);
+               
+    }
+            window.display();
+    }
+    }
+
+}
+//Managing the dynamic memory utilizing the new and delete operators with raw pointers. The worst way to go!
 namespace dm_2
 {
-    export void app(){
-        //Store data in pre-defined variable
-        constexpr int width {600};
-        constexpr int height {600};
-        constexpr float circle_radius {40.f};
-        constexpr float clock_period{.02f};
+export void app(){
+        constexpr int width{600};
+        constexpr int height{600};
+        constexpr float circle_radius{40.f};
+        constexpr float clock_period{1.f};
         constexpr size_t shape_count{5};
-        const std::string title {"SFML Shape Animator"};
-        sf::Color shape_color{sf::Color::Green};
+        const std::string title{"SFML Shape Animator!"};
+        sf::Color shape_color{sf::Color::White};
         sf::Color background_color{sf::Color::Black};
+        sf::Clock clock; //Timer starts ticking the moment the clock is created
+        unsigned int counter{0};
+        constexpr float move_interval {.05f};
         
+    
 
-        sf::RenderWindow window(sf::VideoMode(width, height), title);
+ sf::RenderWindow window(sf::VideoMode(width, height), title);
+        //sf::CircleShape shape(circle_radius);
+        //shape.setFillColor(shape_color);
+/*
+std::vector<sf::CircleShape> shapes; //setup of vector to contain circles in vector shapes
+std::vector<sf::Vector2f> directions;// Vector to store movement direction in x and y coordinates
+*/
+sf::CircleShape* shapes= new sf::CircleShape[shape_count];
+sf::Vector2f* directions= new sf::Vector2f[shape_count];
+sf::Color color[4] {sf::Color::Red,sf::Color::White,sf::Color::Blue,sf::Color::Magenta};
 
-        // Dynamically allocated arrays for shapes and directions
-        sf::CircleShape* shapes = new sf::CircleShape[shape_count];
-        sf::Vector2f* directions = new sf::Vector2f[shape_count];
 
-        // Set up the shapes
-        for (size_t i {0}; i < shape_count; ++i) {
-            shapes[i] = sf::CircleShape(circle_radius);
-            shapes[i].setPosition(100.f * (i + 1), 100.f);
-            shapes[i].setFillColor(sf::Color(50 * i, 100 + (30 * i), 200 - (40 * i)));
+       //set up the different circles
+    for(size_t i{0};i<shape_count;++i){
+        /*
+     sf::CircleShape shape(circle_radius);
+     shape.setPosition(100.f*(i+1),100.f);
+     shape.setFillColor(sf::Color((50*i),(100+30*i),200-(40*i)));
+     shapes.push_back(shape);
+     directions.push_back(sf::Vector2f(20.f,20.f));
+     */
 
-            // Initial direction for each shape (moving diagonally)
-            directions[i] = sf::Vector2f(20.f, 20.f);
-        }
+     shapes[i]=sf::CircleShape(circle_radius);
+     shapes[i].setPosition(100.f*(i+1),100.f);
+     shapes[i].setFillColor(sf::Color(50*i,(30*i),200-(40*1)));
 
-        //Timer setup
-        sf::Clock clock;
-        constexpr float move_interval {0.05f}; // Move shapes every 50 milliseconds
-
+     directions[i]=sf::Vector2(20.f,20.f);
+    }
         while (window.isOpen())
         {
             sf::Event event;
-            while (window.pollEvent(event))
+        while (window.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed){
                     window.close();
-                }
-
-                //Key Events
-                if(event.type == sf::Event::KeyPressed){
-                    if(event.key.code == sf::Keyboard::Escape){
-                        window.close();
-                    }
-                }
             }
 
-            //Timer based movement
-            if(clock.getElapsedTime().asSeconds() > move_interval){
-                for(size_t i{0}; i< shape_count; ++i){
-                    auto& shape = shapes[i];
-                    auto& direction = directions[i];
-
-                    // Get the current position of the shape
-                    sf::Vector2f position = shape.getPosition();
-
-                    // Check for collisions with window edges and reverse direction
-                    if (position.x <= 0.f || position.x + circle_radius * 2 >= width) {
-                        direction.x = -direction.x; // Reverse horizontal direction
-                    }
-                    if (position.y <= 0.f || position.y + circle_radius * 2 >= height) {
-                        direction.y = -direction.y; // Reverse vertical direction
-                    }
-
-                    //Move the shapes in the current direction
-                    shape.move(direction);
+            //Key events
+        if (event.type== sf::Event::KeyPressed){
+                if (event.key.code==sf::Keyboard::Escape){
+                    window.close();
+                std::cout<<"Escape key pressed- Application has ended"<<std::endl;
                 }
-                clock.restart();
             }
-
-            window.clear(background_color);
-            for(size_t i{0}; i < shape_count; ++i){
-                window.draw(shapes[i]);
-            }
-            window.display();
+            
         }
+        
+ /*
+   if (event.type== sf::Event::KeyPressed){
+   
+                if (event.key.code==sf::Keyboard::Space){
+                   for(size_t i{0};i<shapes.size();++i){
+                    auto direction= directions[i];
+                    shapes[i].move(direction);
+                   }
+                std::cout<<"Space key pressed- Something should happen"<<std::endl;
+                }
+          
 
-        //Release the memory
-        delete[] shapes;
-        delete[] directions;
-
-    }
+        }
+                 */ 
+                //timer based movements
+        if(clock.getElapsedTime().asSeconds()>move_interval){
+            for (size_t i{0};i<shape_count;++i){
+                auto& shape= shapes[i];
+                auto& direction=directions[i];
+                //Get the current position of the shape
+                sf::Vector2f position =shape.getPosition();
+                //Check for collisions with window edges and reverse directions
+                if(position.x<=0.f||position.x+ circle_radius*2>=width){
+                        direction.x=-direction.x; }//reverse horizontal directions
+                if(position.y<=0.f||position.y+ circle_radius*2>=height){
+                        direction.y=-direction.y; //reverse vertical directions
+                        }
+               shape.move(direction);
+                }
+             clock.restart();    
+        }
+        
+        
     
-} // namespace dm_2
-
-
-//Use smart pointers to do better than raw pointers
+            window.clear(background_color);
+            //window.draw(shape);
+            for(size_t i{0};i<shape_count;++i){
+                window.draw(shapes[i]);
+               
+    }
+            window.display();
+    }
+//Release memory
+delete[] shapes;
+delete[] directions;
+}
+}
 namespace dm_3
 {
-   export void app(){
-        //Store data in pre-defined variable
-        constexpr int width {600};
-        constexpr int height {600};
-        constexpr float circle_radius {40.f};
-        constexpr float clock_period{.02f};
+export void app(){
+ constexpr int width{600};
+        constexpr int height{600};
+        constexpr float circle_radius{40.f};
+        constexpr float clock_period{1.f};
         constexpr size_t shape_count{5};
-        const std::string title {"SFML Shape Animator"};
-        sf::Color shape_color{sf::Color::Green};
+        const std::string title{"SFML Shape Animator!"};
+        sf::Color shape_color{sf::Color::White};
         sf::Color background_color{sf::Color::Black};
+        sf::Clock clock; //Timer starts ticking the moment the clock is created
+        unsigned int counter{0};
+        constexpr float move_interval {.05f};
         
+    
 
-        sf::RenderWindow window(sf::VideoMode(width, height), title);
+ sf::RenderWindow window(sf::VideoMode(width, height), title);
 
-       // Dynamically allocated arrays for shapes and directions using smart pointers
-       auto shapes = std::make_unique<sf::CircleShape[]>(shape_count);
-       auto directions = std::make_unique<sf::Vector2f[]>(shape_count);
 
-        //Use smart pointers
+//Use smart pointers
 
-        // Set up the shapes
-        for (size_t i {0}; i < shape_count; ++i) {
-            shapes[i] = sf::CircleShape(circle_radius);
-            shapes[i].setPosition(100.f * (i + 1), 100.f);
-            shapes[i].setFillColor(sf::Color(50 * i, 100 + (30 * i), 200 - (40 * i)));
+auto shapes=std::make_unique<sf::CircleShape[]>(shape_count);
+auto directions=std::make_unique<sf::Vector2f[]>(shape_count);
 
-            // Initial direction for each shape (moving diagonally)
-            directions[i] = sf::Vector2f(20.f, 20.f);
-        }
+sf::Color color[4] {sf::Color::Red,sf::Color::White,sf::Color::Blue,sf::Color::Magenta};
 
-        //Timer setup
-        sf::Clock clock;
-        constexpr float move_interval {0.05f}; // Move shapes every 50 milliseconds
 
+       //set up the different circles
+    for(size_t i{0};i<shape_count;++i){
+ 
+
+     shapes[i]=sf::CircleShape(circle_radius);
+     shapes[i].setPosition(100.f*(i+1),100.f);
+     shapes[i].setFillColor(sf::Color(50*i,(30*i),200-(40*i)));
+
+     directions[i]=sf::Vector2(20.f,20.f);
+    }
         while (window.isOpen())
         {
             sf::Event event;
-            while (window.pollEvent(event))
+        while (window.pollEvent(event))
             {
                 if (event.type == sf::Event::Closed){
                     window.close();
-                }
-
-                //Key Events
-                if(event.type == sf::Event::KeyPressed){
-                    if(event.key.code == sf::Keyboard::Escape){
-                        window.close();
-                    }
-                }
             }
 
-            //Timer based movement
-            if(clock.getElapsedTime().asSeconds() > move_interval){
-                for(size_t i{0}; i< shape_count; ++i){
-                    auto& shape = shapes[i];
-                    auto& direction = directions[i];
-
-                    // Get the current position of the shape
-                    sf::Vector2f position = shape.getPosition();
-
-                    // Check for collisions with window edges and reverse direction
-                    if (position.x <= 0.f || position.x + circle_radius * 2 >= width) {
-                        direction.x = -direction.x; // Reverse horizontal direction
-                    }
-                    if (position.y <= 0.f || position.y + circle_radius * 2 >= height) {
-                        direction.y = -direction.y; // Reverse vertical direction
-                    }
-
-                    //Move the shapes in the current direction
-                    shape.move(direction);
+            //Key events
+        if (event.type== sf::Event::KeyPressed){
+                if (event.key.code==sf::Keyboard::Escape){
+                    window.close();
+                std::cout<<"Escape key pressed- Application has ended"<<std::endl;
                 }
-                clock.restart();
             }
-
-            window.clear(background_color);
-            for(size_t i{0}; i < shape_count; ++i){
-                window.draw(shapes[i]);
-            }
-            window.display();
+            
         }
+        
+ /*
+   if (event.type== sf::Event::KeyPressed){
+   
+                if (event.key.code==sf::Keyboard::Space){
+                   for(size_t i{0};i<shapes.size();++i){
+                    auto direction= directions[i];
+                    shapes[i].move(direction);
+                   }
+                std::cout<<"Space key pressed- Something should happen"<<std::endl;
+                }
+          
+
+        }
+                 */ 
+                //timer based movements
+        if(clock.getElapsedTime().asSeconds()>move_interval){
+            for (size_t i{0};i<shape_count;++i){
+                auto& shape= shapes[i];
+                auto& direction=directions[i];
+                //Get the current position of the shape
+                sf::Vector2f position =shape.getPosition();
+                //Check for collisions with window edges and reverse directions
+                if(position.x<=0.f||position.x+ circle_radius*2>=width){
+                        direction.x=-direction.x; }//reverse horizontal directions
+                if(position.y<=0.f||position.y+ circle_radius*2>=height){
+                        direction.y=-direction.y; //reverse vertical directions
+                        }
+               shape.move(direction);
+                }
+             clock.restart();    
+        }
+        
+        
+    
+            window.clear(background_color);
+            //window.draw(shape);
+            for(size_t i{0};i<shape_count;++i){
+                window.draw(shapes[i]);
+               
     }
-       
-} // namespace dm_3
+            window.display();
+    }
+
+}
+
+}
 
