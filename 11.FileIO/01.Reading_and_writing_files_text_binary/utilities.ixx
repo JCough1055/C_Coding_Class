@@ -1,48 +1,45 @@
 module;
 
-#include <filesystem>
-#include <fmt/format.h>
 
-export module utilities;
+#include<filesystem>
+#include<fmt/format.h>
+export module utilities; 
+
+
 
 import text_files;
 import binary_files;
 
-export void read_write_text_files(){
-    std::filesystem::path file_path = R"(D:\sample_file.txt)"; // Windows
-    //std::filesystem::path file_path = R"(/path/to/your/input_file.txt)"; // Linux
+export void read_write_files(){
 
-    std::string content = "\nHello, world!\nThis is a test.";
 
-    //Write the content to the file
-    text_files::write_file(file_path,content);
+  std::filesystem::path file_path = R"(C:\Users\mjcog\Documents\test_file.txt)";
 
-    //Read the content back from the file and print it
-    text_files::read_file(file_path);
+ std::string content = "This is a test file.\nLets see if this works\n I hope it does!";
+text_files::write_file(file_path,content);
+
+text_files::read_file(file_path);
 
 }
 
 export void read_write_binary_files(){
-    // Define file path
-	std::filesystem::path file_path = R"(D:\sample_file.bin)"; // Windows
-    //std::filesystem::path file_path = R"(/path/to/your/input_file.bin)"; // Linux
 
-    // Example content to write (binary data)
-    std::vector<char> content = {'H', 'e', 'l', 'l', 'o', ' ', 'B', 'i', 'n', 'a', 'r', 'y', '!'};
-    //std::vector<char> content = {0x48, 0x65, 0x6C, 0x6C, 0x6F, 0x00};
+    std::filesystem::path binary_file_path = R"(C:\Users\mjcog\Documents\test_binary_file.bin)";
 
-    //Write binary data to the file
-    binary_files::write_file(file_path,content);
+    // Create some binary data
+ //   std::vector<char> content = {'H', 'e', 'l', 'l', 'o', '\0', 'W', 'o', 'r', 'l', 'd', '!', '\n'};
+std::vector<char> content = {0x49, 0x65, 0x6C, 0x6C, 0x6F, 0x00, 0x57, 0x6F, 0x72, 0x6C, 0x64, 0x21, 0x0A}; // "Hello\0World!\n" in hex
+    // Write binary data to file
+    binary_files::write_file(binary_file_path, content);
 
+    // Read binary data back from file
+    std::vector<char> read_data = binary_files::read_file(binary_file_path);
 
-    // Read binary data from file
-    std::vector<char> read_content = binary_files::read_file(file_path);
-
-    // Display the read content as text
-    if (!read_content.empty()) {
-        fmt::print("Read content: {}\n", std::string(read_content.begin(), read_content.end()));
-    } else {
-        fmt::print("No content read from file.\n");
+    // Display read binary data as hex values
+    fmt::print("Read binary data: ");
+    for (char byte : read_data) {
+        fmt::print("{:02X} ", static_cast<unsigned char>(byte));
     }
-
+    fmt::print("\n");
+    
 }

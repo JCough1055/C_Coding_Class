@@ -16,7 +16,8 @@ int main(){
  
 //random_number_old_style();
 //random_gen_modern_cpp();
-random_predictions();
+//random_predictions();
+random_num_example();
 
     return 0;
 }

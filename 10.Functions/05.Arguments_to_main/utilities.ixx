@@ -1,75 +1,74 @@
 module;
-
 #include <fmt/format.h>
-
 export module utilities; 
 
-export void process_arguments(int argc, char* argv[]){
-    fmt::println("number of arguments: {}", argc);
+export void process_arguments(int argc,char* argv[]){
+   fmt::println("Number of arguments: {}",argc);
+    for (size_t i{0};i<argc;++i){
 
-    for(size_t i{0}; i < argc; ++i){
-        fmt::println("arg [{}]: {}", i, argv[i]);
-    }   
-}
-
-
-export void calculator(int argc, char* argv[]){
-
-    //Check the number of arguments
-    if(argc != 4){
-        fmt::println("Program can only be called with 3 arguments like: ");
-		fmt::println("Rocket a + b");
-		fmt::println("You called with : ");
-		for (int i{ 0 }; i < argc; ++i) {
-			 fmt::print(" {}", argv[i]); 
-		}
-		return;
+        fmt::println("number of argumnets[{}]: {}", i,argv[i]);
     }
 
-	// Grab the operands
-	double first_number{ std::atof(argv[1]) };
-	double second_number{ std::atof(argv[3]) };
+}
 
-    if ((first_number == 0.0) || (second_number == 0.0)) {
-		fmt::println("Please use valid numbers ( different from zero) for first and second parameters)");
-		return;
-	}
+export void calculator(int argc,char* argv[]){
+    //Check number of arguments
+    if (argc != 4) {
+        fmt::println("Program can only be called with 3 argumnets like: ");
+        fmt::println("Rocket a+b");
+        fmt::println("You called with : ");
+        for (int i{0};i<argc;++i){
+            fmt::println("{}", argv[i]);
 
-    // Grab the operation
-	const char *operation{ argv[2] };
-    char c;
+        }
+        return;
+    }
 
-	if ((std::strlen(operation) == 1)
-				&& (	   (operation[0] == '+') 
-						|| (operation[0] == '-') 
-						|| (operation[0] == 'x')
-						|| (operation[0] == '/'))
-				){
-		c = operation[0];
-	} else {
-		fmt::println("{} is not a valid operation.", operation);
-		return;
-	}
+    //Grab the operands
+    double firs_number{atof(argv[1])};
+    double second_number{atof(argv[3])};
 
-    // Do the operation
-	switch (c) {
-	case '+':
-		fmt::println("{} + {} = {}", first_number, second_number, first_number + second_number);
-		break;
+    if((firs_number==0.0)||(second_number==0.0)){
 
-	case '-':
-		fmt::println("{} - {} = {}", first_number, second_number, first_number - second_number);
-		break;
+        fmt::println("You need to provide two valid numbers that are not 0");
+        return;
+    }
 
-	case 'x':
-		fmt::println("{} x {} = {}", first_number, second_number, first_number * second_number);
+    const char*operation{argv[2]};
+char c;
 
-		break;
+if ((std::strlen(operation)==1)
+&&(         (operation[0] == '+')
+       ||   (operation[0] == '-')
+        ||  (operation[0] == '*')
+        ||  (operation[0] == '/'))
+    ){
+    c = operation[0];
+    } else {
+        fmt::println("{} is not a valid operation. Please use +,-,* or /! Thank you!",operation);
+        return;
+    }
 
-	case '/':
-		fmt::println("{} / {} = {}", first_number, second_number, first_number / second_number);
-
-		break;
-	}
-
+    //Do the operation
+    switch (c) {
+        case '+':
+            fmt::println("{} + {} = {}",firs_number,second_number,firs_number+second_number);
+            break;
+        case '-':
+            fmt::println("{} - {} = {}",firs_number,second_number,firs_number-second_number);
+            break;
+        case '*':
+            fmt::println("{} * {} = {}",firs_number,second_number,firs_number*second_number);
+            break;
+        case '/':
+            if (second_number == 0.0) {
+                fmt::println("You can not divide by 0!");
+                return;
+            }
+            fmt::println("{} / {} = {}",firs_number,second_number,firs_number/second_number);
+            break;
+        default:
+            fmt::println("Unknown error has occurred!");
+            break;
+    }
 }

@@ -25,6 +25,7 @@ target_sources(${PROJECT_NAME}
         handling_c_strings.ixx
         handling_std_strings.ixx
         string_literals.ixx
+        Domain_Password.ixx
         string_views.ixx
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)

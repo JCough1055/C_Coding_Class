@@ -4,40 +4,34 @@ module;
 #include <string>
 #include <string_view>
 
-export module string_views; 
+export module string_views;
 
-namespace string_views
-{
-    export void the_problem(){
+namespace string_views{
 
-        // Showing the problem
-        std::string string {"Hello"};
-        std::string string1 {string}; // Copy
-        std::string string2 {string}; // Copy
+    export void string_views_the_problem(){
 
-        fmt::println( "address of string: {}",	fmt::ptr(&string ));
-        fmt::println( "address of string1: {}", fmt::ptr(&string1));
-        fmt::println( "address of string2: {}", fmt::ptr(&string2));
+    std::string string1{"Hello"};
+    std::string string2{string1};
+    std::string string3{string1};
+
+    fmt::println("The value of string1 is {} .The address of string1 is {}", string1,fmt::ptr(&string1));
+    fmt::println("The value of string2 is {} .The address of string2 is {}", string2,fmt::ptr(&string2));
+    fmt::println("The value of string3 is {} .The address of string3 is {}", string3, fmt::ptr(&string3));
 
     }
-
 
     export void the_solution(){
-        // Using string_view
-        std::string_view sv0{"Helloooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"};
-        std::string_view sv1 {sv0}; // View viewing the hello literal
-        std::string_view sv2 {sv1}; // Another view viewing hello
 
-        fmt::println( "Size of string_view: {}" , sizeof(std::string_view) );
-        fmt::println( "size of sv1: {}" , sizeof(sv1) );
-
-        fmt::println( "sv0: {}" , sv0 );
-        fmt::println( "sv1: {}" , sv1 );
-        fmt::println( "sv2: {}" , sv2 );
-
+        std::string_view sv1{"Hellooooooooooooooooooooooooooooooooooooooooooooooooo"};
+        std::string_view sv2{sv1};
+        std::string_view sv3{sv1};
+        fmt::println("The value of sv1 is {} .The address of string1 is {}", sv1,fmt::ptr(&sv1));
+    fmt::println("The value of string2 is {} .The address of string2 is {}", sv2,fmt::ptr(&sv2));
+    fmt::println("The value of string3 is {} .The address of string3 is {}", sv3, fmt::ptr(&sv3));
     }
 
-    export void string_view_construction(){
+
+export void string_view_construction(){
         // Constructing string_view's
         std::string string3 {"Regular std::string"};
         const char * c_string {"Regular C-String"};
@@ -69,6 +63,8 @@ namespace string_views
 
         fmt::println( "Changing data: " );
         //Change the data
+         word[0] = 'C';
+          word[1] = 'a';
         word[2] = 't';
 
         fmt::println( "word : {}" , sv9 );
@@ -87,7 +83,7 @@ namespace string_views
         //Prints : animals have left the region
         fmt::println( "View with removed prefix(4) : {}" , sv10 );
 
-        sv10.remove_suffix(10); // Removes "the region"
+        sv10.remove_suffix(15); // Removes "the region"
 
         //Prints : animals have left
         fmt::println( "View with removed suffix(10) : {}" , sv10 );
@@ -106,7 +102,8 @@ namespace string_views
             fmt::println( "INSIDE --- sv11 is viewing: {}" , sv11 );
             //string4 goes out of scope here.
         }
-        fmt::println( "OUTSIDE --- sv1 is viewing: {}" , sv11 );
+        fmt::println( "OUTSIDE --- sv11 is viewing: {}" , sv11 );
+    
     }
 
 
@@ -142,5 +139,5 @@ namespace string_views
         fmt::println("The back character is: {}", sv16.back());
         fmt::println("Substring: {}", sv16.substr(0, 22));
     }
-    
-} // namespace string_views
+
+}

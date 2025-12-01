@@ -5,98 +5,65 @@ module;
 
 export module handling_std_strings;
 
-namespace handling_std_strings
-{
-    export void std_string_declaration(){
+namespace handling_std_strings{
+export void std_string_declaration(){
+    std::string full_name;//Empty string
+    std::string planet{"Earth. Where the sky is blue"};//Initialize with string literal
+    std::string preferred_planet {planet};//Initalize with another string
+    std::string message{"Hello there",5};
+    std::string weird_message(4,'e');
+    std::string greeting{"Hello World!"};
+    std::string saying_hello{greeting,6,5};
 
-        std::string full_name;// Empty string
-        std::string planet{ "Earth. Where the sky is blue" };// Initialize with string literal
-        std::string prefered_planet{ planet };// Initialize with other existing string
-        std::string message{ "Hello there", 5 };// Initialize with part of a string literal.
-                                                // Contains hello
-        std::string weird_message(4, 'e');// Initialize with multiple copies of a char
-                                            //  contains eeee
-        std::string greeting{ "Hello World" };
-        std::string saying_hello{ greeting, 6, 5 };// Initialize with part of an existing std::string
-                                                    //  starting at index 6, taking 5 characters.
-                                                    // Will contain World.
-
-        fmt::println("full_name: {}", full_name);
+       fmt::println("full_name: {}", full_name);
         fmt::println("planet: {}", planet);
-        fmt::println("prefered_planet: {}", prefered_planet);
+        fmt::println("preferred_planet: {}", preferred_planet);
         fmt::println("message : {}", message);
         fmt::println("weird_message: {}", weird_message);
         fmt::println("greeting: {}", greeting);
         fmt::println("saying_hello: {}", saying_hello);
 
-        // Changing std::string at runtime
-        planet = "Earth. Where the sky is blue Earth. Where the sky is blue Earth. Where ";
-        fmt::println("planet: {}", planet);
+        planet={"You can change the strings to reflectwhatever you want to see at runtime!"};
+        fmt::println("The new value of planet is: {} ", planet);
 
-    }
+}
+export void std_string_concatenation(){
+    fmt::println("");
+    fmt::println("Concatenating two strings : ");
+    std::string str1{"Hello"};
+    std::string str2{"World"};
 
-    export void std_string_concatenation(){
+    std::string message = str1+" my " +str2 + " you cann write whatever you want here ";
+    fmt::println("message : {}", message);
+    
+    fmt::println("");
+    fmt::println("A few ways around string literal concatenation : ");
 
-        // Concatenating two strings : The + operator
-        /*
-        fmt::println("");
-        fmt::println( "Concatenating two strings : " );
+    std::string str5 {"Hello World"};//Make one string literal
+        std::string str6{"Hello" " World"};//Put the literals sise by sid with no + sign
+        std::string str7{std::string{"Hello"}+" World"};//turn one or noth into std::string"}}
+        fmt::println("str5: {}",str5);
+        fmt::println("str6: {}",str6);
+        fmt::println("str7: {}",str7);
 
-        std::string str1{"Hello"};
-        std::string str2{"World"};
-
-        std::string message = str1 + " my " + str2;
-
-        fmt::println( "message :{}", message );
-        */
-
-        // Concatenating string literals : No, No - Compiler Error
-        // String literals are expanded into const char* arrays and C++ doesn't know
-        // how to add arrays with the + operator. Hence the compiler error.
-        /*
-        fmt::println("");
-        fmt::println( "Concatenating string literals : No,No! Compiler Error " );
-
-        std::string str3 { "Hello" + "World"}; // Compiler Error
-        std::string str4 = "Hello" + "World";  // Compiler Error
-        */
-
-
-        // A few ways around string literal concatenation
-        /*
-        fmt::println("");
-        fmt::println( "A few ways around string literal concatenation" );
-
-        std::string str5 {"Hello World"}; 	// Make the string one literal
-                                            //in the first place
-        std::string str6 {"Hello" " World"};// Put the literals side by side
-                                            //without the + in between
-        std::string str7{std::string{"Hello"} + " World"};//Turn one or both into a std::string
-                                                        //object  and do theconcatenation 
-        fmt::println( "str5: {}",  str5 );
-        fmt::println( "str6: {}",  str6 );
-        fmt::println( "str7: {}", str7);
-
-        using namespace std::string_literals; // necessary for the s suffix
-                                            // This polutes the namespace.
-        std::string str8 {"Hello"s + " World"};// Turn one or both into strings using the
-                                    //s suffix . the string_literals namespace has to be imported
-                                    //for this to work
+         using namespace std::string_literals; // necessary for the s suffix
+                                                 // This polutes the namespace.
+        std::string str8 {"Hello"s + " World"}; // Turn one or both into strings using the
+                                                //s suffix . the string_literals namespace has to be imported
+                                                //for this to work
         fmt::println("str8: {}", str8);
-
-        std::string str9;
-        {
-            using namespace std::string_literals;
-            str9 = "Hello"s + " World"; 
-        }
-        fmt::println( "str9: {}", str9 );
-        */
-
-
-        // std::string is a compound type, it has properties and behaviors
+std::string str9;
+{
+         using namespace std::string_literals; // necessary for the s suffix
+                                                 // This polutes the namespace.
+        str9="Hello"s + " World"; // Turn one or both into strings using the
+      }                                          //s suffix . the string_literals namespace has to be imported
+                                                //for this to work
+        fmt::println("str9: {}", str9);
+// std::string is a compound type, it has properties and behaviors
         // one of the behaviors is append. We access the behaviors using
         // the . operator after the std::string variable name
-        /*
+        
         fmt::println("");
         fmt::println( "Using the append method : " );
         std::string str10 {"Hello"};
@@ -106,8 +73,6 @@ namespace handling_std_strings
 
         std::string str13{std::string{"Hello"}.append(" World")};
         fmt::println( "str13 : {}", str13 );
-        */
-
 
         // Append can do more than the + operator
         // The + operator is just a convenience for basic concatenation
@@ -178,6 +143,7 @@ namespace handling_std_strings
         fmt::println("str26 : {}", str26);
 
 
-    }
-    
-} // namespace handling_std_strings
+}
+
+
+}

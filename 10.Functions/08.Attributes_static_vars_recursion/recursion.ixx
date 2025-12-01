@@ -14,8 +14,8 @@ namespace recursion
     }
 
     //Memoization
-    export int fibonacci_memo(int n) {
-        static std::vector<int> memo(100, -1); // Initialize with -1 to indicate uncomputed values
+    export double fibonacci_memo(double n) {
+        static std::vector<double> memo(100, -1); // Initialize with -1 to indicate uncomputed values
 
         if (n == 0) return 0;
         if (n == 1) return 1;
@@ -26,17 +26,21 @@ namespace recursion
         return memo[n];
     }
 
-    export constexpr int fibonacci_iterative(int n) {
+    export constexpr double fibonacci_iterative(double n) {
         if (n == 0) return 0;
         if (n == 1) return 1;
 
-        int prev = 0, curr = 1, next;
-        for (int i = 2; i <= n; ++i) {
+        double prev = 0, curr = 1, next;
+        for (double i = 2; i <= n; ++i) {
             next = prev + curr;
             prev = curr;
             curr = next;
         }
         return curr;
     }
+
+
+
     
+   
 } // namespace recursion

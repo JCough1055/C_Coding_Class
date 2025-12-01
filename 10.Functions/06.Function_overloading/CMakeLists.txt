@@ -22,8 +22,7 @@ target_sources(${PROJECT_NAME}
         FILE_SET CXX_MODULES FILES
         utilities.ixx
         overloading_1.ixx
-        overloading_2.ixx 
+        overloading_2.ixx
         overloading_4.ixx
-
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)

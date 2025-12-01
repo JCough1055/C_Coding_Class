@@ -1,25 +1,51 @@
 #The root CMakeLists.txt file.
 cmake_minimum_required(VERSION 3.28)
 
-set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
-
-#The project name is set here. In this case it's Rocket, but you can change it to whatever you want.
-project(Rocket  VERSION 1.0.0 LANGUAGES CXX)
+# Only set vcpkg toolchain if VCPKG_ROOT is defined and the file exists
+if(DEFINED ENV{VCPKG_ROOT} AND EXISTS "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+    set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+endif()
 
 #Require C++23
-set(CXX_STANDARD_REQUIRED ON) #Make C++23 a hard requirement
 set(CMAKE_CXX_STANDARD 23) # Default C++ standard for targets
-set(CMAKE_CXX_SCAN_FOR_MODULES ON)
+set(CMAKE_CXX_STANDARD_REQUIRED ON) #Make C++23 a hard requirement
+set(CMAKE_CXX_EXTENSIONS OFF) # Disable compiler-specific extensions
 
-find_package(fmt CONFIG REQUIRED)
+# Only enable module scanning for generators that support it
+if(CMAKE_GENERATOR MATCHES "Ninja|Visual Studio")
+    set(CMAKE_CXX_SCAN_FOR_MODULES ON)
+else()
+    set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
+endif()
+
+#The project name is set here. In this case it's Rocket, but you can change it to whatever you want.
+project(Rocket VERSION 1.0.0 LANGUAGES CXX)
+
+# Try to find fmt, but make it optional for now
+find_package(fmt CONFIG)
 
 #We're using the project name as the target name, but you can change it to make them different.
 #With this setup, the name of the executable will be the same as the project name.
 add_executable(${PROJECT_NAME} main.cpp)
 
-target_sources(${PROJECT_NAME}
+# Set C++23 properties for the target
+target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_23)
+
+# Add the module source files if compiler supports modules
+if(CMAKE_CXX_SCAN_FOR_MODULES)
+    target_sources(${PROJECT_NAME}
         PUBLIC
         FILE_SET CXX_MODULES FILES
         utilities.ixx
-)
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
+    )
+    target_compile_definitions(${PROJECT_NAME} PRIVATE USE_MODULES)
+else()
+    # Fallback to traditional header files
+    target_include_directories(${PROJECT_NAME} PRIVATE .)
+endif()
+
+# Link libraries if fmt was found
+if(fmt_FOUND)
+    target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE HAVE_FMT)
+endif()

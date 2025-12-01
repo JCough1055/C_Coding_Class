@@ -15,19 +15,22 @@ namespace handling_characters
         fmt::println( "^ is alphanumeric : {}", std::isalnum('^') );
 
         //Can use this as a test condition
-        char input_char {'*'};
+        char input_char {'7'};
         if(std::isalnum(input_char)){
             fmt::println( "{} is alhpanumeric.", input_char );
         }else{
             fmt::println(  "{} is not alphanumeric.", input_char );
         }
+
+        char input_char1{'c'};
+        fmt::println(" {} is lowercase but now is uppercase: {}",input_char1,static_cast<char>(std::toupper(input_char1)));
     }
 
 
     export void is_alphabetic(){
         // Check if character is alphabetic
         fmt::println( "std::isalpha : ");
-        fmt::println(   "C is alphabetic : {}", std::isalpha('e') ); // 1
+        fmt::println(   "C is alphabetic : {}", std::isalpha('C') ); // 1
         fmt::println(   "^ is alphabetic : {}", std::isalpha('^') ); // 0
         fmt::println(   "7 is alphabetic : {}", std::isalpha('7') ); // 0
 
@@ -54,6 +57,20 @@ namespace handling_characters
             }
         }
         fmt::println( "In total, we found {} blank characters.", blank_count);	
+        
+        char message2[] {"Hello there. It is a phenomenal day. The sun is shining but it is very hot."};
+        fmt::println( "message : {}", message2 );
+
+        //Find and print char index
+        size_t char_count{};
+        for (size_t i{0} ; i < std::size(message2); ++i){
+            //fmt::println( "Value : " << message[i] );
+            if(std::isgraph(message2[i])){
+                fmt::println( "Found a character at index : [{}]",  i );
+                ++char_count;
+            }
+        }
+        fmt::println( "In total, we found {}  characters.", char_count);
     }
 
     export void is_upercase(){
@@ -87,7 +104,7 @@ namespace handling_characters
         fmt::println("");
         fmt::println( "std::isdigit : ");
 
-        char statement[] {"Mr Hamilton owns 221 cows. That's a lot of cows! The kid exclamed."};
+        char statement[] {"Mr Hamilton owns 5,6221 cows. That's a lot of cows! The kid exclamed."};
         fmt::println( "statement : {}", statement );
 
         size_t digit_count{};

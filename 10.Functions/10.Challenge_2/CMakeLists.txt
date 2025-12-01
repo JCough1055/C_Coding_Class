@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 23) # Default C++ standard for targets
 set(CMAKE_CXX_SCAN_FOR_MODULES ON)
 
 find_package(fmt CONFIG REQUIRED)
-find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
+find_package(SFML COMPONENTS system window graphics network CONFIG REQUIRED)
 find_package(ftxui CONFIG REQUIRED)
 
 #We're using the project name as the target name, but you can change it to make them different.
@@ -24,4 +24,4 @@ target_sources(${PROJECT_NAME}
         FILE_SET CXX_MODULES FILES
         utilities.ixx
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt sfml-graphics ftxui::dom ftxui::screen ftxui::component)
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt sfml-system sfml-network sfml-graphics sfml-window ftxui::screen ftxui::dom ftxui::component)

@@ -13,7 +13,7 @@ namespace text_files
 
         //Open the file for writing and in append mode
         //Creating the stream object attempts to open the file
-        std::ofstream file(file_path, std::ios::out | std::ios::app);
+        std::ofstream file(file_path, std::ios::out | std::ios::trunc);
         if (!file.is_open()) {
             fmt::println("Failed to open file for writing: {}", file_path.filename().string());
             return;

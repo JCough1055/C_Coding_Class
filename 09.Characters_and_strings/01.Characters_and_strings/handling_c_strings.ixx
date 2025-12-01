@@ -5,32 +5,22 @@ module;
 
 export module handling_c_strings;
 
-namespace handling_c_strings
-{
-        export void cstring_strlen(){
-        //std::strlen : Find the length of a string
-        // real arrays and those decayed into pointers
-        const char message1 [] {"The sky is blue."};
+namespace handling_c_strings{
 
-        //Array decays into pointer when we use const char*
-        const char* message2 {"The sky is blue."};
-        fmt::println( "message1 : {}",  message1 );
-        fmt::println( "message2 : {}",  message2 );
+    export void cstring_strlen(){
 
-        //strlen ignores null character
-        fmt::println( "strlen(message1) : {}", std::strlen(message1) );
+        const char message1[]{"The sky is blue, however there are storms on the horizon!"};
+        fmt::println("Message1 is :{}",message1);
+        const char * message2{"the sky is turning grey"};
 
-        // std::sizeof includes the null character
-        fmt::println( "sizeof(message1) : {}",  sizeof(message1) );
+        fmt::println("Message2 is {}", message2);
 
-        //strlen still works with decayed arrays
-        fmt::println( "strlen(message2) : {}" , std::strlen(message2) );
+        fmt::println("The length of message1 is {}", std::strlen(message1));
+         fmt::println("The length of message2 is {}", std::strlen(message2));
+          fmt::println("The size of message1 is {}", sizeof(message1));
+         fmt::println("The size of message2 is {}", sizeof(message2));
 
-        //std::size prints size of pointer
-        fmt::println( "sizeof(message2) : {}",  sizeof(message2) );
     }
-    
-
     export void cstring_strcmp(){
 
         // std::strcmp - signature : int strcmp( const char *lhs, const char *rhs );
@@ -79,8 +69,7 @@ namespace handling_c_strings
         //Print out the comparison
         fmt::println( "std::strcmp ({}, {}): {}", string_data1 , string_data2 , std::strcmp(string_data1, string_data2) );
     }
-
-    export void cstring_strncmp(){
+     export void cstring_strncmp(){
         // std::strncmp : int strncmp( const char *lhs, const char *rhs, std::size_t count );
         // Compares n characters in the strings
         // Returns : Negative value if lhs appears before rhs in lexicographical order.
@@ -113,7 +102,4 @@ namespace handling_c_strings
         fmt::println( "std::strncmp ({}, {}, {}): {}", string_data1, string_data2, n,
                     std::strncmp(string_data1,string_data2,n) );
     }
-
-    
-} // namespace handling_c_strings
-
+}

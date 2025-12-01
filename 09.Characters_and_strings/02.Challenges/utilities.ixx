@@ -6,6 +6,9 @@ module;
 #include <string>
 #include <algorithm>
 #include <fmt/format.h>
+#include <limits>
+#include <sstream>
+#include <algorithm>
 
 export module utilities;
 
@@ -21,7 +24,56 @@ export module utilities;
     * The code should not use C++ types like std::string or std::vector.
     * It should use C-style strings and functions from <cctype> to analyze the input.
 */
+namespace challenge_1
+{
 
+export void challenge_1_app(){
+std::string input;
+    
+ int sum=0;
+ int upper=0;
+ int lower=0;
+ int digit=0;
+ int punc=0;
+std::cout<<"Enter a line of characters upper and lower case and numbers:"<<input<<std::endl;
+    std::getline(std::cin,input);
+
+    std::cout<<"You entered "<<input<<std::endl;
+ for (size_t i=0;i<input.size();++i)
+
+    {
+            if (std::isupper(input[i])) {
+                std::cout << input[i] << " is an uppercase letter." << std::endl;
+                upper++;
+               
+            } else if (std::islower(input[i])) {
+                std::cout << input[i] << " is a lowercase letter." << std::endl;
+                lower++;
+                
+            } else if (std::isdigit(input[i])) {
+                std::cout << input[i] << " is a digit." << std::endl;
+                digit++;
+                
+            } else if (std::ispunct(input[i])) {
+                std::cout << input[i] << " is a punctuation mark." << std::endl;
+                punc++;
+            } else {
+                std::cout << input[i] << " is not a letter, digit, or punctuation mark." << std::endl;
+            }
+        }
+         std::cout<<"The number of upper case lettersis: "<<upper<<std::endl;
+         std::cout<<"The number of lowercase letters is: "<<lower<<std::endl;
+         std::cout<<"The number of digits is: "<<digit<<std::endl;
+         std::cout<<"The number of punctuation marks is: "<<punc<<std::endl;
+         sum=upper+lower+digit+punc;
+        std::cout<<"Total characters analyzed: "<<sum<<std::endl;
+}
+
+
+
+}
+
+/*
 namespace challenge_1
 {
     //Function to analyze the text
@@ -78,7 +130,7 @@ namespace challenge_1
     } 
     
 } // namespace challenge_1
-
+*/
 
 /*
 2. Manual String Copy
@@ -93,8 +145,50 @@ Write a program that does the following:
     * Before exiting, the program should free any dynamically allocated memory.
 
 */
+namespace chall_2{
+
+export void chall_2_app(){
+#include <iostream>
+#include <string>
+#include <limits>
 
 
+    bool end = false;
+    std::string input2;
+
+    do {
+        std::cout << "Enter a string of characters less than 100 characters: " << std::endl;
+        std::getline(std::cin, input2);
+
+        if (input2.size() >= 100) {
+            std::cout << "Error: Please enter a string less than 100 characters." << std::endl;
+            continue;
+        }
+
+        // Dynamically allocate memory for the copy
+        std::string* copy_input2 = new std::string(input2);
+
+        std::cout << "The address of input2 is " << &input2 << std::endl;
+        std::cout << "You entered: " << *copy_input2 << std::endl;
+        std::cout << "The address of copy_input2 is " << copy_input2 << std::endl;
+        std::cout<< "The value of copy_input2 is "<<*copy_input2<<std::endl;
+
+        // Free the memory after use
+        delete copy_input2;
+
+        std::cout << "Would you like to continue? (y/n): ";
+        char go_on;
+        std::cin >> go_on;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        end = !(go_on == 'y' || go_on == 'Y');
+    } while (!end);
+
+    std::cout << "Goodbye!" << std::endl;
+}
+}
+
+/*
 namespace challenge_2
 {
 
@@ -126,11 +220,11 @@ namespace challenge_2
 
 
             //Copy the data manually
-            /*
+            
             for(size_t i{0}; i < length;  ++i){
                 copied_string[i] = input[i];    // Copy each character
             }
-            */
+            
 
             //Use a function from the <cstring> header to copy
             std::strcpy(copied_string,input);
@@ -154,8 +248,8 @@ namespace challenge_2
         fmt::println("Goodbye!");
 
     }
-    
-} // namespace challenge_2
+*/
+// namespace challenge_2
 
 
 /*
@@ -168,7 +262,7 @@ namespace challenge_2
     * Use std::string and facilities from <string> to manipulate the text.
     * The program should repeatedly ask the user if they want to continue and give them the option to enter another sentence, until they choose to stop.
 */
-
+/*
 namespace challenge_3
 {
 
@@ -225,7 +319,7 @@ namespace challenge_3
 
     }
     
-} // namespace challenge_3
+*/ // namespace challenge_3
 
 
 /*
@@ -301,7 +395,57 @@ namespace challenge_4
     
 } // namespace challenge_4
 
+/*
+3. Word Reverser Program
 
+    Write a program that does the following:
+
+    * Ask the user to enter a sentence.
+    * Reverse each word in the sentence but keep the order of the words.
+    * Use std::string and facilities from <string> to manipulate the text.
+    * The program should repeatedly ask the user if they want to continue and give them the option to enter another sentence, until they choose to stop.
+*/
+
+namespace challenge_3
+{
+
+    export void app_3(){
+
+
+
+        std::string user_sentence{0};
+        bool end2{false};
+         do {
+        std::cout << "Enter a sentence " << std::endl;
+        std::getline(std::cin, user_sentence);
+        std::cout<<"You entered: "<<user_sentence<<std::endl;
+
+        // Reverse each word in the sentence
+        std::istringstream iss(user_sentence);
+        std::string word;
+        std::string reversed_sentence;
+
+        while (iss >> word) {
+            std::reverse(word.begin(), word.end());
+            reversed_sentence += word + " ";
+        }
+
+        // Print the reversed sentence
+        std::cout << "Reversed sentence: " << reversed_sentence << std::endl;
+
+  
+
+        std::cout << "Would you like to continue? (y/n): ";
+        char go_on2;
+        std::cin >> go_on2;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+        end2 = !(go_on2 == 'y' || go_on2 == 'Y');
+    } while (!end2);
+
+    std::cout << "Goodbye!" << std::endl;
+    }
+}
 
 
 

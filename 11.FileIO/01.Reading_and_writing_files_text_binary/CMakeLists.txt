@@ -22,6 +22,6 @@ target_sources(${PROJECT_NAME}
         FILE_SET CXX_MODULES FILES
         utilities.ixx
         text_files.ixx
-        binary_files.ixx 
+        binary_files.ixx
 )
 target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt)

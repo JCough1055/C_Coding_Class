@@ -1,21 +1,22 @@
 /*
-    . Function overloading:
-        . Concept: Functions with the same name but different parameters.
-            . The differences may be in the type of the parameters or the number of parameters.
-            . The return type is not considered. 
-        . Basic examples
-        . Overloading to handle arrays and pointers
-        . Overloading std::getline: an example.
-        . Some fun examples
+    . Project description
+        . Topic #1
+        . Topic #2
 */
 
+#include <fmt/format.h>
+#include <array>
+import overloading_1;
 import utilities;
 
-int main(){
+int main() {
+//overloading_1::print(42);
+//overloading_1::print(84.555);
+//overloading_1::print("the dog ate my homework");
+//overloading_2_demo();
+//overloading_demo_3();
+overloading_4_demo();
 
-    //overloading_1_demo();
-    //overloading_2_demo();
-    //overloading_3_demo();
-    overloading_4_demo();
-    
+
+    return 0;
 }

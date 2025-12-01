@@ -1,12 +1,15 @@
 /*
-    . Breaking up the sfml application into functions
+    . Project description
+        . Topic #1
+        . Topic #2
 */
 
 import utilities;
 
-int main(){
+#include <fmt/format.h>
 
-    //it_1::app();
-    it_2::app();
-    
+int main() {
+//it_1::app();
+it_2::app();
+    return 0;
 }
