@@ -1,35 +1,21 @@
 module;
-
-#include <filesystem>
-
-export module utilities;
-
+#include<filesystem>
+export module utilities; 
 import csv;
 import json;
 
-
 export void csv_demo(){
 
-    std::filesystem::path file_path = R"(D:\sample_file.csv)"; // Windows
-    //std::filesystem::path file_path = R"(/path/to/your/sample_file.csv)"; // Linux
 
-    //Write CSV data
+    std::filesystem::path file_path = R"(C:\Users\mjcog\Documents\sample_file.csv)";
     csv::write_csv(file_path);
-
-    //Read and display CSV data
     csv::read_csv(file_path);
-
 }
 
 export void json_demo(){
 
-    std::filesystem::path file_path = R"(D:\sample_file.json)"; // Windows
-	//std::filesystem::path file_path = R"(/path/to/your/sample_file.json)"; // Linux
 
-	// Write JSON data
-	json::write_json(file_path);
-
-	// Read and display the JSON data
-	json::read_json(file_path);
-
+    std::filesystem::path file_path = R"(C:\Users\mjcog\Documents\sample_file.json)";
+    json::write_json(file_path);
+    json::read_json(file_path);
 }

@@ -20,8 +20,8 @@ namespace json
         // Simple JSON-like format (not using a library)
         // For simplicity, I'll use a minimal JSON-like structure, as C++ doesn't have built-in JSON handling. In real-world projects, you'd typically use libraries like nlohmann/json. However, this example focuses on the writing and reading process using the standard library.
         json_file << "{\n";
-        json_file << "  \"name\": \"Alice\",\n";
-        json_file << "  \"age\": 30,\n";
+        json_file << "  \"name\": \"Bob\",\n";
+        json_file << "  \"age\": 60,\n";
         json_file << "  \"occupation\": \"Engineer\"\n";
         json_file << "}\n";
 

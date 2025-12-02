@@ -1,12 +1,17 @@
 /*
-    A project to practice reading and writing json and csv data from our C++ program
+    . Project description
+        . Topic #1
+        . Topic #2
 */
 
+#include <fmt/format.h>
+#include <array>
 import utilities;
 
-int main(){
 
-    //csv_demo();
-    json_demo();
-    
+
+int main() {
+csv_demo();
+json_demo();
+    return 0;
 }
