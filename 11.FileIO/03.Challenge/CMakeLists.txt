@@ -23,4 +23,4 @@ target_sources(${PROJECT_NAME}
         FILE_SET CXX_MODULES FILES
         utilities.ixx
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt ftxui::dom ftxui::screen ftxui::component )
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt ftxui::dom ftxui::screen ftxui::component)
