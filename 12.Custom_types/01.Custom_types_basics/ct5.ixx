@@ -56,7 +56,7 @@ namespace ct5
                 //this->m_color = color;
                 self.m_color = color;
             }
-            */
+    */
 
 
             unsigned int get_x() const {

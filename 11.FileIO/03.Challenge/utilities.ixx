@@ -106,13 +106,14 @@ auto delete_button=Button("Delete Contact",[&](){
     });
     auto renderer=Renderer(layout,[&]{
         return vbox({
-           text("Contact Manager")|bold|center,
+           text("The Incredible Contact Manager by Jay Coughlin")|bold|center,
            separator(),
            hbox(text("Name: "),name_input_box->Render()),
            hbox(text("Phone: "),phone_input_box->Render()),
            hbox({add_button->Render()| color(Color::Green),
            delete_button->Render()| color(Color::Red),
         }) |center,
+        separator(),
         separator(),
         text("Contacts:")|bold,
         display_contacts->Render(),
