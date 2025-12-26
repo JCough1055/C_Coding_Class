@@ -25,20 +25,20 @@ namespace move_semantics_02
 
 
     //Two functions, one takes an lvalue reference, the other takes an rvalue reference
-    /*
+    /* 
     void print_position(Position &pos){
         fmt::print("Position(lvalue ref): x = {}, y = {}\n", pos.x, pos.y);
     }
-    */
+   */
 
-    void normalize_position(Position&& pos){
-        fmt::print("Position(rvalue ref): x = {}, y = {}\n", pos.x, pos.y);
-    }
+   void normalize_position(Position&& pos){
+       fmt::print("Position(rvalue ref): x = {}, y = {}\n", pos.x, pos.y);
+   }
 
     void print_position(Position &&pos){
-        //fmt::print("Position(rvalue ref): x = {}, y = {}\n", pos.x, pos.y);
-        //normalize_position(pos); //pos is named here, so it's an lvalue, we need to cast it to an rvalue reference
-         normalize_position(std::move(pos)); //pos is now an rvalue reference
+        fmt::print("Position(rvalue ref): x = {}, y = {}\n", pos.x, pos.y);
+       // normalize_position(pos); //pos is named here, so it's an lvalue, we need to cast it to an rvalue reference
+     normalize_position(std::move(pos)); //pos is now an rvalue reference
     }
     
 
@@ -55,8 +55,8 @@ namespace move_semantics_02
 
         fmt::println("result: {}", result);
         fmt::println("outcome: {}", outcome);
-        */
-
+        fmt::println("-----------------------");
+*/
 
         //print_position(Position{10,20});
 
@@ -72,5 +72,6 @@ namespace move_semantics_02
         print_position(std::move(pos)); // The rvalue reference overload is called here
 
     }
-    
-} // namespace move_semantics_02;
+ 
+} 
+// namespace move_semantics_02;
