@@ -11,10 +11,10 @@ set(CXX_STANDARD_REQUIRED ON) #Make C++23 a hard requirement
 set(CMAKE_CXX_STANDARD 23) # Default C++ standard for targets
 
 find_package(fmt CONFIG REQUIRED)
-find_package(SFML COMPONENTS system window graphics audio CONFIG REQUIRED)
+find_package(SFML COMPONENTS system window graphics CONFIG REQUIRED)
 
 #We're using the project name as the target name, but you can change it to make them different.
 #With this setup, the name of the executable will be the same as the project name.
 add_executable(${PROJECT_NAME} main.cpp game.cpp)
 
-target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt sfml-graphics)
+target_link_libraries(${PROJECT_NAME} PRIVATE fmt::fmt sfml-system sfml-network sfml-graphics sfml-window)
