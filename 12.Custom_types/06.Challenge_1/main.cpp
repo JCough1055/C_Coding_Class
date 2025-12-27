@@ -1,11 +1,15 @@
 /*
-    . Organize a basic SFML application into classes.
+    . Project description
+        . Topic #1
+        . Topic #2
 */
 
+#include <fmt/format.h>
 import game;
 
-int main(){
+int main() {
     Game game;
     game.run();
-    
+
+    return 0;
 }
