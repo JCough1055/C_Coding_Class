@@ -18,7 +18,7 @@ export void app(){
 
    
     sf::RenderWindow window(sf::VideoMode(Board::WIDTH * Board::BLOCK_SIZE, Board::HEIGHT * Board::BLOCK_SIZE), "Tetris"); 
-     Board board;
+    Board board;
     board.initialize(); 
     BoardEntity entity(board);
 
