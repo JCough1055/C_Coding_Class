@@ -71,6 +71,10 @@ void initialize_shape(Type type){
     int current_rotation;
     int pos_x;
     int pos_y;
+    int last_pos_x;
+    int last_pos_y;
+    int last_rotation;
+    std::array<std::array<bool,GRID_SIZE>,GRID_SIZE> last_shape;
     std::array<std::array<bool,GRID_SIZE>,GRID_SIZE> current_shape;
 
 };

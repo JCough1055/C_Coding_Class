@@ -47,7 +47,7 @@ export void app(){
     sf::RenderWindow window(sf::VideoMode(Board::WIDTH * Board::BLOCK_SIZE, Board::HEIGHT * Board::BLOCK_SIZE), "Tetris"); 
     Board board;
     BoardEntity entity(board);
-    Tetromino tetromino(Tetromino::Type::Z);
+    Tetromino tetromino(Tetromino::Type::I);
     board.initialize();
 
     while ((window.isOpen())) {
